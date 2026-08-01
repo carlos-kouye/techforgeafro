@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classement — TechForge BJ</title>
+  <link rel="icon" type="image/png" href="img/log_techforge.png" />
+  <link rel="stylesheet" href="css/classement.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-conteneur">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icone"><img src="img/log_techforge.png" alt="TechForge BJ" /></div>
+        <div class="nav-logo-texte">
+          <span class="nav-logo-nom">TechForge</span>
+        </div>
+      </a>
+      <div class="nav-capsule-wrap">
+        <a href="index.html" class="nav-lien-simple">Accueil</a>
+        <div class="nav-dropdown" id="dropExplorer">
+          <button class="nav-dropdown-btn" aria-expanded="false">Explorer <i class="fa-solid fa-chevron-down nav-chevron"></i></button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#a-propos"><i class="fa-solid fa-circle-info"></i>À propos</a>
+            <a href="index.html#fonctionnement"><i class="fa-solid fa-gears"></i>Fonctionnement</a>
+            <a href="index.html#tarifs"><i class="fa-solid fa-tag"></i>Tarifs</a>
+            <a href="index.html#faq"><i class="fa-solid fa-circle-question"></i>FAQ</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="dropParticiper">
+          <button class="nav-dropdown-btn" aria-expanded="false">Participer <i class="fa-solid fa-chevron-down nav-chevron"></i></button>
+          <div class="nav-dropdown-menu">
+            <a href="soumission.html"><i class="fa-solid fa-paper-plane"></i>Soumettre un projet</a>
+            <a href="classement.html"><i class="fa-solid fa-trophy"></i>Classement</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-droite">
+        <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
+          <i class="fa-solid fa-moon icone-lune"></i>
+          <i class="fa-solid fa-sun icone-soleil"></i>
+        </button>
+        <a href="profil.html" class="nav-profil" id="navProfil" style="display:none;"><i class="fa-solid fa-circle-user"></i></a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="menu-mobile-overlay" id="menuMobile">
+    <div class="menu-mobile-section">
+      <ul class="menu-mobile-liste"><li><a href="index.html">Accueil</a></li></ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Participer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="soumission.html">Soumettre un projet</a></li>
+        <li><a href="classement.html">Classement</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-actions">
+      <a href="inscription.html" class="menu-mobile-cta">S'inscrire au challenge</a>
+    </div>
+  </div>
+
+  <main class="page-classement">
+    <div class="classement-conteneur">
+
+      <div class="classement-entete" data-anim="bas">
+        <span class="badge-section">Classement</span>
+        <h1>Résultats officiels</h1>
+        <p>Félicitations à tous les participants. Voici les résultats de la saison.</p>
+      </div>
+
+      <!-- Message : résultats pas encore disponibles (géré par JS via CLASSEMENT_DISPONIBLE) -->
+      <div class="classement-attente" id="classementAttente" style="display:none;">
+        <div class="attente-icone">
+          <i class="fa-solid fa-hourglass-half"></i>
+        </div>
+        <h2>Résultats pas encore disponibles</h2>
+        <p>Les projets sont en cours d'évaluation par les jurys. Les résultats seront publiés ici et annoncés dans le groupe WhatsApp dès que possible.</p>
+        <a href="index.html" class="bouton-retour">
+          <i class="fa-solid fa-house"></i>
+          Retour à l'accueil
+        </a>
+      </div>
+
+      <!-- Contenu classement (visible si CLASSEMENT_DISPONIBLE = true) -->
+      <div id="classementContenu">
+
+        <!-- PODIUM TOP 3 -->
+        <div class="podium" data-anim="bas">
+
+          <div class="podium-carte podium-carte-2">
+            <div class="podium-rang">🥈</div>
+            <div class="podium-nom">Prénom NOM</div>
+            <div class="podium-categorie">Développement Web</div>
+            <div class="podium-score">
+              <span class="score-label">Score</span>
+              <span class="score-valeur score-argent">87</span>
+            </div>
+            <a href="#" target="_blank" class="podium-lien">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Voir le projet
+            </a>
+          </div>
+
+          <div class="podium-carte podium-carte-1">
+            <div class="podium-couronne">👑</div>
+            <div class="podium-rang">🥇</div>
+            <div class="podium-nom">Prénom NOM</div>
+            <div class="podium-categorie">UI/UX Design</div>
+            <div class="podium-score">
+              <span class="score-label">Score</span>
+              <span class="score-valeur score-or">95</span>
+            </div>
+            <a href="#" target="_blank" class="podium-lien">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Voir le projet
+            </a>
+          </div>
+
+          <div class="podium-carte podium-carte-3">
+            <div class="podium-rang">🥉</div>
+            <div class="podium-nom">Prénom NOM</div>
+            <div class="podium-categorie">Design Graphique</div>
+            <div class="podium-score">
+              <span class="score-label">Score</span>
+              <span class="score-valeur score-bronze">82</span>
+            </div>
+            <a href="#" target="_blank" class="podium-lien">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              Voir le projet
+            </a>
+          </div>
+
+        </div>
+
+        <!-- FILTRES -->
+        <div class="classement-filtres" id="filtres">
+          <button class="filtre-btn actif" data-filtre="tous">Tous</button>
+          <button class="filtre-btn" data-filtre="dev-web">Développement Web</button>
+          <button class="filtre-btn" data-filtre="ui-ux">UI/UX Design</button>
+          <button class="filtre-btn" data-filtre="graphisme">Design Graphique</button>
+          <button class="filtre-btn" data-filtre="ia-creativite">IA &amp; Créativité</button>
+        </div>
+
+        <!-- TABLEAU -->
+        <div class="classement-tableau">
+          <div class="classement-tableau-entete">
+            <span>Rang</span>
+            <span>Participant</span>
+            <span>Catégorie</span>
+            <span>Score</span>
+            <span>Projet</span>
+          </div>
+
+          <div class="classement-ligne" data-categorie="dev-web">
+            <span class="cl-rang">4</span>
+            <span class="cl-nom">Prénom NOM</span>
+            <span class="cl-categorie"><i class="fa-solid fa-laptop-code"></i> Dev Web</span>
+            <span class="cl-score">78</span>
+            <a href="#" target="_blank" class="cl-lien"><i class="fa-solid fa-arrow-up-right-from-square"></i> Voir</a>
+          </div>
+
+          <div class="classement-ligne" data-categorie="ui-ux">
+            <span class="cl-rang">5</span>
+            <span class="cl-nom">Prénom NOM</span>
+            <span class="cl-categorie"><i class="fa-solid fa-pen-ruler"></i> UI/UX</span>
+            <span class="cl-score">74</span>
+            <a href="#" target="_blank" class="cl-lien"><i class="fa-solid fa-arrow-up-right-from-square"></i> Voir</a>
+          </div>
+
+          <div class="classement-ligne" data-categorie="graphisme">
+            <span class="cl-rang">6</span>
+            <span class="cl-nom">Prénom NOM</span>
+            <span class="cl-categorie"><i class="fa-solid fa-palette"></i> Graphisme</span>
+            <span class="cl-score">71</span>
+            <a href="#" target="_blank" class="cl-lien"><i class="fa-solid fa-arrow-up-right-from-square"></i> Voir</a>
+          </div>
+
+          <div class="classement-ligne" data-categorie="ia-creativite">
+            <span class="cl-rang">7</span>
+            <span class="cl-nom">Prénom NOM</span>
+            <span class="cl-categorie"><i class="fa-solid fa-robot"></i> IA &amp; Créativité</span>
+            <span class="cl-score">67</span>
+            <a href="#" target="_blank" class="cl-lien"><i class="fa-solid fa-arrow-up-right-from-square"></i> Voir</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/accueil.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil — TechForge BJ</title>
+  <link rel="icon" type="image/png" href="img/log_techforge.png" />
+  <link rel="stylesheet" href="css/profil.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-conteneur">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icone">
+          <img src="img/log_techforge.png" alt="TechForge BJ" />
+        </div>
+        <div class="nav-logo-texte">
+          <span class="nav-logo-nom">TechForge</span>
+          <span class="nav-logo-bj">BJ</span>
+        </div>
+      </a>
+
+      <div class="nav-capsule-wrap">
+        <a href="index.html" class="nav-lien-simple">Accueil</a>
+        <div class="nav-dropdown" id="dropExplorer">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Explorer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#a-propos"><i class="fa-solid fa-circle-info"></i>À propos</a>
+            <a href="index.html#fonctionnement"><i class="fa-solid fa-gears"></i>Fonctionnement</a>
+            <a href="index.html#tarifs"><i class="fa-solid fa-tag"></i>Tarifs</a>
+            <a href="index.html#faq"><i class="fa-solid fa-circle-question"></i>FAQ</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="dropParticiper">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Participer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="soumission.html"><i class="fa-solid fa-paper-plane"></i>Soumettre un projet</a>
+            <a href="classement.html"><i class="fa-solid fa-trophy"></i>Classement</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-droite">
+        <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
+          <i class="fa-solid fa-moon icone-lune"></i>
+          <i class="fa-solid fa-sun icone-soleil"></i>
+        </button>
+        <a href="profil.html" class="nav-profil" id="navProfil">
+          <i class="fa-solid fa-circle-user"></i>
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="menu-mobile-overlay" id="menuMobile">
+    <div class="menu-mobile-section">
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html">Accueil</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Explorer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html#fonctionnement">Fonctionnement</a></li>
+        <li><a href="index.html#tarifs">Tarifs</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Participer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="soumission.html">Soumettre un projet</a></li>
+        <li><a href="classement.html">Classement</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PAGE PROFIL -->
+  <main class="page-profil">
+    <div class="profil-conteneur">
+
+      <!-- Message si non connecté -->
+      <div class="profil-non-connecte" id="profilNonConnecte" style="display:none;">
+        <div class="non-connecte-icone">
+          <i class="fa-solid fa-user-slash"></i>
+        </div>
+        <h2>Tu n'es pas encore inscrit</h2>
+        <p>Inscris-toi au challenge pour accéder à ton espace personnel et suivre ta participation.</p>
+        <a href="inscription.html" class="bouton-inscrire">
+          <i class="fa-solid fa-rocket"></i>
+          S'inscrire au challenge
+        </a>
+      </div>
+
+      <!-- Contenu profil (visible si inscrit) -->
+      <div id="profilContenu" style="display:none;">
+
+        <!-- En-tête profil -->
+        <div class="profil-header" data-anim="bas">
+          <div class="profil-avatar" id="profilAvatar">C</div>
+          <div class="profil-header-info">
+            <div class="profil-badge-saison">
+              <i class="fa-solid fa-bolt"></i>
+              Saison en cours
+            </div>
+            <h1 id="profilNom">Carlos Kouye</h1>
+            <div class="profil-meta">
+              <span><i class="fa-solid fa-graduation-cap"></i> <span id="profilUniversite">EPAC</span></span>
+              <span><i class="fa-solid fa-layer-group"></i> <span id="profilNiveau">L3</span></span>
+              <span><i class="fa-solid fa-palette"></i> <span id="profilCategorie">Développement Web</span></span>
+            </div>
+          </div>
+          <button class="profil-deconnexion" id="btnDeconnexion">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Se déconnecter
+          </button>
+        </div>
+
+        <!-- Grille tableau de bord -->
+        <div class="profil-grille">
+
+          <!-- Statut de participation -->
+          <div class="profil-carte profil-carte-statut" data-anim="bas">
+            <div class="profil-carte-titre">
+              <i class="fa-solid fa-chart-line"></i>
+              Ton parcours
+            </div>
+            <div class="profil-timeline">
+
+              <div class="profil-etape profil-etape-done">
+                <div class="profil-etape-point">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Inscription</strong>
+                  <span id="profilDateInscription">—</span>
+                </div>
+              </div>
+
+              <div class="profil-etape" id="etapeGroupe">
+                <div class="profil-etape-point profil-etape-point-attente">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Groupe WhatsApp</strong>
+                  <span>Rejoint après inscription</span>
+                </div>
+              </div>
+
+              <div class="profil-etape" id="etapeDefi">
+                <div class="profil-etape-point profil-etape-point-attente">
+                  <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Défi annoncé</strong>
+                  <span>En attente du lancement</span>
+                </div>
+              </div>
+
+              <div class="profil-etape" id="etapeRealisation">
+                <div class="profil-etape-point profil-etape-point-attente">
+                  <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Réalisation</strong>
+                  <span>7 jours de challenge</span>
+                </div>
+              </div>
+
+              <div class="profil-etape" id="etapeSoumission">
+                <div class="profil-etape-point profil-etape-point-attente">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Soumission</strong>
+                  <span id="statutSoumission">Pas encore soumis</span>
+                </div>
+              </div>
+
+              <div class="profil-etape" id="etapeResultat">
+                <div class="profil-etape-point profil-etape-point-attente">
+                  <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="profil-etape-info">
+                  <strong>Résultats</strong>
+                  <span>En attente de publication</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Colonne droite -->
+          <div class="profil-col-droite">
+
+            <!-- Infos saison -->
+            <div class="profil-carte" data-anim="droite">
+              <div class="profil-carte-titre">
+                <i class="fa-solid fa-calendar-days"></i>
+                Infos de la saison
+              </div>
+              <div class="profil-infos-liste">
+                <div class="profil-info-ligne">
+                  <span class="profil-info-label">Statut</span>
+                  <span class="profil-info-valeur profil-badge-attente" id="statutSaison">
+                    <i class="fa-solid fa-clock"></i>
+                    En attente
+                  </span>
+                </div>
+                <div class="profil-info-ligne">
+                  <span class="profil-info-label">Catégorie</span>
+                  <span class="profil-info-valeur" id="profilCategorieInfo">—</span>
+                </div>
+                <div class="profil-info-ligne">
+                  <span class="profil-info-label">WhatsApp</span>
+                  <span class="profil-info-valeur" id="profilWhatsapp">—</span>
+                </div>
+                <div class="profil-info-ligne">
+                  <span class="profil-info-label">Université</span>
+                  <span class="profil-info-valeur" id="profilUniversiteInfo">—</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action rapide -->
+            <div class="profil-carte profil-carte-action" data-anim="droite">
+              <div class="profil-carte-titre">
+                <i class="fa-solid fa-bolt"></i>
+                Action rapide
+              </div>
+              <p class="profil-action-texte" id="profilActionTexte">
+                Le challenge n'a pas encore démarré. Reste à l'écoute dans le groupe WhatsApp.
+              </p>
+              <a href="soumission.html" class="profil-btn-action" id="profilBtnAction">
+                <i class="fa-solid fa-paper-plane"></i>
+                Soumettre mon projet
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/accueil.js"></script>
+</body>
+</html>

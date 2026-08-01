@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription — TechForge</title>
+  <meta name="description" content="Inscris-toi au challenge créatif TechForge et rejoins la communauté des créateurs." />
+  <link rel="icon" type="image/png" href="img/log_techforge.png" />
+  <link rel="apple-touch-icon" href="img/log_techforge.png" />
+  <link rel="stylesheet" href="css/inscription.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-conteneur">
+
+      <a href="index.html" class="nav-logo">
+        <img src="img/log_techforge.png" alt="TechForge" class="nav-logo-img" />
+        <div class="nav-logo-texte">
+          <span class="nav-logo-nom">TechForge</span>
+        </div>
+      </a>
+
+      <div class="nav-capsule-wrap">
+        <a href="index.html" class="nav-lien-simple">Accueil</a>
+        <div class="nav-dropdown" id="dropExplorer">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Explorer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#a-propos"><i class="fa-solid fa-circle-info"></i>À propos</a>
+            <a href="index.html#cible"><i class="fa-solid fa-users"></i>Cible</a>
+            <a href="index.html#fonctionnement"><i class="fa-solid fa-gears"></i>Fonctionnement</a>
+            <a href="index.html#tarifs"><i class="fa-solid fa-tag"></i>Tarifs</a>
+            <a href="index.html#faq"><i class="fa-solid fa-circle-question"></i>FAQ</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="dropParticiper">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Participer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="soumission.html"><i class="fa-solid fa-paper-plane"></i>Soumettre un projet</a>
+            <a href="classement.html"><i class="fa-solid fa-trophy"></i>Classement</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-droite">
+        <a class="nav-outil-btn nav-langue"
+           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforge.vercel.app/inscription.html"
+           target="_blank" rel="noopener" title="Translate to English">
+          <span>FR</span>
+          <i class="fa-solid fa-globe"></i>
+        </a>
+        <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
+          <i class="fa-solid fa-moon icone-lune"></i>
+          <i class="fa-solid fa-sun icone-soleil"></i>
+        </button>
+        <a href="profil.html" class="nav-profil" id="navProfil" style="display:none;">
+          <i class="fa-solid fa-circle-user"></i>
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div class="menu-mobile-overlay" id="menuMobile">
+    <div class="menu-mobile-section">
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html">Accueil</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Explorer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html#a-propos">À propos</a></li>
+        <li><a href="index.html#cible">Cible</a></li>
+        <li><a href="index.html#fonctionnement">Fonctionnement</a></li>
+        <li><a href="index.html#tarifs">Tarifs</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Participer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="soumission.html">Soumettre un projet</a></li>
+        <li><a href="classement.html">Classement</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-actions">
+      <a href="inscription.html" class="menu-mobile-cta">S'inscrire au challenge</a>
+    </div>
+  </div>
+
+
+  <!-- PAGE INSCRIPTION -->
+  <main class="page-inscription">
+    <div class="inscription-conteneur">
+
+      <div class="inscription-entete" data-anim="bas">
+        <span class="badge-section">Inscription</span>
+        <h1>Rejoins le challenge</h1>
+        <p>Remplis ce formulaire pour participer à la prochaine saison TechForge.</p>
+      </div>
+
+      <div class="inscription-carte" data-anim="bas">
+        <form class="formulaire" id="formulaireInscription" novalidate>
+
+          <!-- Nom + Email -->
+          <div class="formulaire-ligne">
+            <div class="champ">
+              <label for="nomComplet">
+                <i class="fa-solid fa-user"></i>
+                Nom complet
+              </label>
+              <input type="text" id="nomComplet" name="nom"
+                     placeholder="Prénom et Nom" autocomplete="name" />
+              <span class="champ-erreur" id="erreurNom">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Veuillez entrer votre nom complet.
+              </span>
+            </div>
+            <div class="champ">
+              <label for="email">
+                <i class="fa-solid fa-envelope"></i>
+                Adresse email
+              </label>
+              <input type="email" id="email" name="email"
+                     placeholder="ton@email.com" autocomplete="email" />
+              <span class="champ-erreur" id="erreurEmail">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Veuillez entrer une adresse email valide.
+              </span>
+            </div>
+          </div>
+
+          <!-- Université + Niveau -->
+          <div class="formulaire-ligne">
+            <div class="champ">
+              <label for="universite">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Université / École
+              </label>
+              <input type="text" id="universite" name="universite"
+                     placeholder="Nom de ton établissement" />
+              <span class="champ-erreur" id="erreurUniversite">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Veuillez entrer votre université.
+              </span>
+            </div>
+            <div class="champ">
+              <label for="niveau">
+                <i class="fa-solid fa-layer-group"></i>
+                Niveau d'études
+              </label>
+              <select id="niveau" name="niveau">
+                <option value="">Sélectionner</option>
+                <option value="L1">Licence 1</option>
+                <option value="L2">Licence 2</option>
+                <option value="L3">Licence 3</option>
+                <option value="M1">Master 1</option>
+                <option value="M2">Master 2</option>
+                <option value="BTS">BTS</option>
+                <option value="Autre">Autre</option>
+              </select>
+              <span class="champ-erreur" id="erreurNiveau">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Veuillez sélectionner votre niveau.
+              </span>
+            </div>
+          </div>
+
+          <!-- Catégorie -->
+          <div class="champ">
+            <label for="categorie">
+              <i class="fa-solid fa-palette"></i>
+              Catégorie choisie
+            </label>
+            <select id="categorie" name="categorie">
+              <option value="">Choisir ta catégorie</option>
+              <option value="dev-web">Développement Web</option>
+              <option value="ui-ux">UI/UX Design</option>
+              <option value="graphisme">Design Graphique</option>
+              <option value="ia-creativite">IA &amp; Créativité</option>
+            </select>
+            <span class="champ-erreur" id="erreurCategorie">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Veuillez choisir une catégorie.
+            </span>
+          </div>
+
+          <!-- Bouton -->
+          <button type="submit" class="bouton-formulaire" id="btnInscription">
+            <i class="fa-solid fa-rocket"></i>
+            <span id="btnInscriptionTexte">Participer au challenge</span>
+          </button>
+
+          <p class="formulaire-note">
+            <i class="fa-solid fa-lock"></i>
+            Tes données sont utilisées uniquement pour le challenge TechForge.
+          </p>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/accueil.js"></script>
+</body>
+</html>

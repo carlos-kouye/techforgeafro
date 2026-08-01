@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soumettre mon projet — TechForge</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="img/log_techforge.png" />
+  <link rel="stylesheet" href="css/soumission.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-conteneur">
+
+      <a href="index.html" class="nav-logo">
+        <img src="img/log_techforge.png" alt="TechForge" class="nav-logo-img" />
+        <div class="nav-logo-texte">
+          <span class="nav-logo-nom">TechForge</span>
+        </div>
+      </a>
+
+      <div class="nav-capsule-wrap">
+        <a href="index.html" class="nav-lien-simple">Accueil</a>
+        <div class="nav-dropdown" id="dropExplorer">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Explorer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="index.html#a-propos"><i class="fa-solid fa-circle-info"></i>À propos</a>
+            <a href="index.html#fonctionnement"><i class="fa-solid fa-gears"></i>Fonctionnement</a>
+            <a href="index.html#tarifs"><i class="fa-solid fa-tag"></i>Tarifs</a>
+            <a href="index.html#faq"><i class="fa-solid fa-circle-question"></i>FAQ</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" id="dropParticiper">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Participer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="soumission.html"><i class="fa-solid fa-paper-plane"></i>Soumettre un projet</a>
+            <a href="classement.html"><i class="fa-solid fa-trophy"></i>Classement</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-droite">
+        <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
+          <i class="fa-solid fa-moon icone-lune"></i>
+          <i class="fa-solid fa-sun icone-soleil"></i>
+        </button>
+        <a href="profil.html" class="nav-profil" id="navProfil" style="display:none;">
+          <i class="fa-solid fa-circle-user"></i>
+        </a>
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div class="menu-mobile-overlay" id="menuMobile">
+    <div class="menu-mobile-section">
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html">Accueil</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Explorer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="index.html#fonctionnement">Fonctionnement</a></li>
+        <li><a href="index.html#tarifs">Tarifs</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Participer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="soumission.html">Soumettre un projet</a></li>
+        <li><a href="classement.html">Classement</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-actions">
+      <a href="inscription.html" class="menu-mobile-cta">S'inscrire au challenge</a>
+    </div>
+  </div>
+
+
+  <!-- PAGE -->
+  <main class="page-soumission">
+    <div class="soumission-conteneur">
+
+      <div class="soumission-entete" data-anim="bas">
+        <span class="badge-section">Soumission</span>
+        <h1>Soumettre mon projet</h1>
+        <p>Envoie ton projet avant la date limite. Assure-toi que tous tes liens sont accessibles publiquement.</p>
+      </div>
+
+      <!-- Message : pas inscrit -->
+      <div class="soumission-message soumission-message-warning" id="msgNonInscrit" style="display:none;">
+        <div class="message-icone" style="background:rgba(245,158,11,0.1);color:#f59e0b;">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3>Tu dois d'abord t'inscrire</h3>
+          <p>La soumission est réservée aux participants inscrits. Inscris-toi d'abord pour accéder à cette page.</p>
+          <a href="inscription.html" class="bouton-message">
+            <i class="fa-solid fa-user-plus"></i>
+            S'inscrire maintenant
+          </a>
+        </div>
+      </div>
+
+      <!-- Message : pas encore ouvert -->
+      <div class="soumission-message soumission-message-info" id="msgPasOuvert" style="display:none;">
+        <div class="message-icone" style="background:rgba(59,130,246,0.1);color:#3B82F6;">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <div>
+          <h3>La soumission n'est pas encore ouverte</h3>
+          <p>Le challenge n'a pas encore démarré. Reviens dès l'annonce du défi dans le groupe WhatsApp pour soumettre ton projet.</p>
+          <a href="index.html" class="bouton-message bouton-message-bleu">
+            <i class="fa-solid fa-house"></i>
+            Retour à l'accueil
+          </a>
+        </div>
+      </div>
+
+      <!-- Contenu principal -->
+      <div id="soumissionContenu">
+
+        <!-- Chrono -->
+        <div class="soumission-chrono" id="chronoZone">
+          <div class="chrono-label">
+            <i class="fa-solid fa-hourglass-half"></i>
+            <span>Temps restant :</span>
+          </div>
+          <div class="chrono-temps">
+            <div class="temps-bloc">
+              <strong id="chronoJours">--</strong>
+              <span>jours</span>
+            </div>
+            <div class="temps-sep">:</div>
+            <div class="temps-bloc">
+              <strong id="chronoHeures">--</strong>
+              <span>heures</span>
+            </div>
+            <div class="temps-sep">:</div>
+            <div class="temps-bloc">
+              <strong id="chronoMinutes">--</strong>
+              <span>min</span>
+            </div>
+            <div class="temps-sep">:</div>
+            <div class="temps-bloc">
+              <strong id="chronoSecondes">--</strong>
+              <span>sec</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Délai expiré -->
+        <div class="soumission-expire" id="delaiExpire" style="display:none;">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Délai de soumission terminé</h3>
+          <p>La période de soumission pour cette saison est clôturée. Rendez-vous à la prochaine saison !</p>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="soumission-carte" id="formulaireZone" data-anim="bas">
+
+          <!-- Guide par catégorie -->
+          <div class="soumission-guide">
+            <div class="guide-icone"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+              <strong>Ce que tu dois soumettre selon ta catégorie :</strong>
+              <ul class="guide-liste">
+                <li><i class="fa-solid fa-laptop-code" style="color:#3B82F6;"></i><span><strong>Dev Web</strong> — Lien GitHub + lien du site déployé (Vercel, Netlify...) obligatoires</span></li>
+                <li><i class="fa-solid fa-pen-ruler" style="color:#8b5cf6;"></i><span><strong>UI/UX</strong> — Lien Figma ou outil de maquette + lien secondaire si besoin</span></li>
+                <li><i class="fa-solid fa-palette" style="color:#ec4899;"></i><span><strong>Graphiste / IA</strong> — Lien vers tes visuels (Behance, Drive, Pinterest...)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <form class="formulaire" id="formulaireSoumission" novalidate>
+
+            <div class="formulaire-ligne">
+              <div class="champ">
+                <label for="souNom">Nom complet</label>
+                <input type="text" id="souNom" name="nom" placeholder="Ton prénom et nom" autocomplete="name" />
+                <span class="champ-erreur" id="erreurSouNom">Veuillez entrer votre nom.</span>
+              </div>
+              <div class="champ">
+                <label for="souCategorie">Catégorie</label>
+                <select id="souCategorie" name="categorie">
+                  <option value="">Choisir ta catégorie</option>
+                  <option value="dev-web">Développement Web</option>
+                  <option value="ui-ux">UI/UX Design</option>
+                  <option value="graphisme">Design Graphique</option>
+                  <option value="ia-creativite">IA &amp; Créativité</option>
+                </select>
+                <span class="champ-erreur" id="erreurSouCategorie">Veuillez choisir une catégorie.</span>
+              </div>
+            </div>
+
+            <!-- Lien principal -->
+            <div class="champ">
+              <label for="souLienPrincipal">
+                Lien principal
+                <span class="champ-hint" id="hintLienPrincipal">GitHub, Figma, Behance, Drive...</span>
+              </label>
+              <input type="url" id="souLienPrincipal" name="lienPrincipal" placeholder="https://..." />
+              <span class="champ-erreur" id="erreurSouLien">Veuillez entrer un lien valide (commence par https://).</span>
+            </div>
+
+            <!-- Lien supplémentaire -->
+            <div class="champ">
+              <label for="souLienSupp">
+                Lien supplémentaire
+                <span class="champ-hint champ-hint-devweb" id="hintLienSupp">Site déployé (Vercel, Netlify...) — obligatoire pour Dev Web</span>
+                <span class="champ-requis-devweb" id="reqDevWeb" style="display:none;">
+                  <i class="fa-solid fa-star" style="color:#ef4444;font-size:0.6rem;"></i> Obligatoire
+                </span>
+              </label>
+              <input type="url" id="souLienSupp" name="lienSupp" placeholder="https://..." />
+              <span class="champ-erreur" id="erreurSouLienSupp">Obligatoire pour Dev Web — entre le lien de ton site déployé.</span>
+            </div>
+
+            <!-- Commentaire -->
+            <div class="champ">
+              <label for="souCommentaire">
+                Commentaire
+                <span class="champ-hint">(optionnel — max 400 caractères)</span>
+              </label>
+              <textarea id="souCommentaire" name="commentaire" rows="4" maxlength="400" placeholder="Décris brièvement ton projet, tes choix techniques ou créatifs..."></textarea>
+              <div class="champ-bas">
+                <span class="compteur" id="compteurCommentaire">0 / 400</span>
+              </div>
+            </div>
+
+            <button type="submit" class="bouton-formulaire" id="btnSoumission">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span id="btnSouTexte">Envoyer mon projet</span>
+            </button>
+
+            <p class="formulaire-note">
+              <i class="fa-solid fa-lock"></i>
+              Assure-toi que tous tes liens sont accessibles publiquement avant d'envoyer.
+            </p>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/accueil.js"></script>
+</body>
+</html>

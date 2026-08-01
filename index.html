@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO essentiel -->
+  <title>TechForge — Challenge Créatif 7 Jours pour Développeurs et Designers</title>
+  <meta name="description" content="TechForge est un challenge créatif de 7 jours pour développeurs, designers et créatifs. Réalise un vrai projet, fais-toi remarquer et rejoins une communauté de talents." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://techforge.vercel.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="TechForge — Challenge Créatif 7 Jours" />
+  <meta property="og:description" content="7 jours pour prouver ton talent. Rejoins TechForge et construis un vrai projet." />
+  <meta property="og:url"         content="https://techforge.vercel.app/" />
+  <meta property="og:image"       content="https://techforge.vercel.app/img/log_techforge.png" />
+  <meta property="og:locale"      content="fr_FR" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/log_techforge.png" />
+  <link rel="apple-touch-icon"    href="img/log_techforge.png" />
+
+  <link rel="stylesheet" href="css/accueil.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-conteneur">
+
+      <a href="index.html" class="nav-logo">
+        <img src="img/log_techforge.png" alt="TechForge" class="nav-logo-img" />
+        <div class="nav-logo-texte">
+          <span class="nav-logo-nom">TechForge</span>
+        </div>
+      </a>
+
+      <div class="nav-capsule-wrap">
+        <a href="#accueil" class="nav-lien-simple">Accueil</a>
+
+        <div class="nav-dropdown" id="dropExplorer">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Explorer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#a-propos"><i class="fa-solid fa-circle-info"></i>À propos</a>
+            <a href="#cible"><i class="fa-solid fa-users"></i>Cible</a>
+            <a href="#fonctionnement"><i class="fa-solid fa-gears"></i>Fonctionnement</a>
+            <a href="#organisation"><i class="fa-solid fa-sitemap"></i>Organisation</a>
+            <a href="#tarifs"><i class="fa-solid fa-tag"></i>Tarifs</a>
+            <a href="#faq"><i class="fa-solid fa-circle-question"></i>FAQ</a>
+          </div>
+        </div>
+
+        <div class="nav-dropdown" id="dropParticiper">
+          <button class="nav-dropdown-btn" aria-expanded="false">
+            Participer <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="soumission.html"><i class="fa-solid fa-paper-plane"></i>Soumettre un projet</a>
+            <a href="classement.html"><i class="fa-solid fa-trophy"></i>Classement</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc droit  -->
+      <div class="nav-droite">
+
+        <a class="nav-outil-btn nav-langue"
+           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforge.vercel.app"
+           target="_blank" rel="noopener" title="Translate to English">
+          <span>FR</span>
+          <i class="fa-solid fa-globe"></i>
+        </a>
+
+        <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
+          <i class="fa-solid fa-moon icone-lune"></i>
+          <i class="fa-solid fa-sun icone-soleil"></i>
+        </button>
+
+        <a href="profil.html" class="nav-profil" id="navProfil" style="display:none;" aria-label="Mon profil">
+          <i class="fa-solid fa-circle-user"></i>
+        </a>
+
+        <a href="inscription.html" class="nav-cta">S'inscrire</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+        <span class="hamburger-barre"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div class="menu-mobile-overlay" id="menuMobile">
+    <div class="menu-mobile-section">
+      <ul class="menu-mobile-liste">
+        <li><a href="#accueil">Accueil</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Explorer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="#a-propos">À propos</a></li>
+        <li><a href="#cible">Cible</a></li>
+        <li><a href="#fonctionnement">Fonctionnement</a></li>
+        <li><a href="#organisation">Organisation</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-section">
+      <span class="menu-mobile-titre">Participer</span>
+      <ul class="menu-mobile-liste">
+        <li><a href="soumission.html">Soumettre un projet</a></li>
+        <li><a href="classement.html">Classement</a></li>
+      </ul>
+    </div>
+    <div class="menu-mobile-actions">
+      <a href="inscription.html" class="menu-mobile-cta">S'inscrire au challenge</a>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <section class="hero" id="accueil">
+    <div class="hero-fond" aria-hidden="true">
+      <div class="hero-grille"></div>
+      <div class="hero-halo"></div>
+    </div>
+
+    <div class="hero-contenu">
+      <div class="hero-centre" data-anim="bas">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Challenge 7 Jours · Saison en cours
+        </div>
+
+        <h1 class="hero-titre">
+          L'espace où les créateurs
+          <span class="hero-encadre">
+            <span class="hero-encadre-texte">développent leur expérience</span>
+            <span class="coin coin-tl"></span>
+            <span class="coin coin-tr"></span>
+            <span class="coin coin-bl"></span>
+            <span class="coin coin-br"></span>
+          </span>
+          et passent à l'action.
+        </h1>
+
+        <p class="hero-sous-titre">
+          Un challenge intensif pour développeurs, designers et créatifs.
+          Réalise un vrai projet, fais-toi remarquer.
+        </p>
+
+        <div class="hero-boutons">
+          <a href="inscription.html" class="bouton-principal">
+            <i class="fa-solid fa-rocket"></i>
+            S'inscrire maintenant
+          </a>
+          <a href="#fonctionnement" class="bouton-secondaire">
+            Comment ça marche
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+
+  <!-- À PROPOS -->
+  <section class="section section-apropos" id="a-propos">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">À propos</span>
+        <h2>Pourquoi TechForge existe</h2>
+        <p>Un problème réel, une solution concrète pour les créateurs.</p>
+      </div>
+      <div class="apropos-grille">
+        <div class="apropos-carte apropos-probleme" data-anim="gauche">
+          <div class="apropos-carte-top">
+            <div class="apropos-icone" style="background:rgba(239,68,68,0.1);color:#ef4444;">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>Le problème</h3>
+          </div>
+          <ul class="apropos-liste">
+            <li><span class="apropos-puce" style="background:rgba(239,68,68,0.1);color:#ef4444;"><i class="fa-solid fa-xmark"></i></span><span>Manque de projets concrets dans les portfolios étudiants</span></li>
+            <li><span class="apropos-puce" style="background:rgba(239,68,68,0.1);color:#ef4444;"><i class="fa-solid fa-xmark"></i></span><span>Peu d'opportunités de pratiquer sous pression réelle</span></li>
+            <li><span class="apropos-puce" style="background:rgba(239,68,68,0.1);color:#ef4444;"><i class="fa-solid fa-xmark"></i></span><span>Manque de visibilité pour les jeunes talents créatifs</span></li>
+            <li><span class="apropos-puce" style="background:rgba(239,68,68,0.1);color:#ef4444;"><i class="fa-solid fa-xmark"></i></span><span>La peur d'exposer son travail bloque la progression</span></li>
+          </ul>
+        </div>
+        <div class="apropos-carte apropos-solution" data-anim="droite">
+          <div class="apropos-carte-top">
+            <div class="apropos-icone" style="background:rgba(16,185,129,0.1);color:#10b981;">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Ce que TechForge apporte</h3>
+          </div>
+          <ul class="apropos-liste">
+            <li><span class="apropos-puce" style="background:rgba(16,185,129,0.1);color:#10b981;"><i class="fa-solid fa-check"></i></span><span>Une pratique réelle sur un vrai projet en 7 jours</span></li>
+            <li><span class="apropos-puce" style="background:rgba(16,185,129,0.1);color:#10b981;"><i class="fa-solid fa-check"></i></span><span>Une expérience concrète pour ton portfolio</span></li>
+            <li><span class="apropos-puce" style="background:rgba(16,185,129,0.1);color:#10b981;"><i class="fa-solid fa-check"></i></span><span>Une communauté soudée de créateurs motivés</span></li>
+            <li><span class="apropos-puce" style="background:rgba(16,185,129,0.1);color:#10b981;"><i class="fa-solid fa-check"></i></span><span>Visibilité réelle — ton projet évalué et publié</span></li>
+            <li><span class="apropos-puce" style="background:rgba(16,185,129,0.1);color:#10b981;"><i class="fa-solid fa-check"></i></span><span>Un boost de créativité dans un cadre structuré</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CIBLE -->
+  <section class="section section-cible" id="cible">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">Pour qui</span>
+        <h2>Ce challenge est fait pour toi si…</h2>
+        <p>TechForge accueille tous les profils créatifs et techniques.</p>
+      </div>
+      <div class="cible-grille">
+        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-laptop-code"></i></div><h4>Développeur Web</h4><p>Tu codes des interfaces, des apps, des sites. Montre ce que tu sais construire.</p></div>
+        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-pen-ruler"></i></div><h4>UI/UX Designer</h4><p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p></div>
+        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-palette"></i></div><h4>Graphiste</h4><p>Tu maîtrises les outils visuels. Exprime ta créativité face à un vrai brief.</p></div>
+        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-robot"></i></div><h4>IA &amp; Créativité</h4><p>Tu explores l'IA générative. Utilise-la comme outil pour créer l'extraordinaire.</p></div>
+        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-graduation-cap"></i></div><h4>Étudiant créatif</h4><p>Tu apprends et tu veux progresser. TechForge est ta rampe de lancement.</p></div>
+      </div>
+      <div class="cible-non" data-anim="bas">
+        <div class="cible-non-titre"><i class="fa-solid fa-ban" style="color:#ef4444;"></i><h3>Ce challenge n'est pas fait pour...</h3></div>
+        <div class="cible-non-grille">
+          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui ne veulent pas apprendre ni progresser</p></div>
+          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui ne prennent pas les engagements au sérieux</p></div>
+          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui abandonnent au premier obstacle</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FONCTIONNEMENT -->
+  <section class="section section-fonctionnement" id="fonctionnement">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">Fonctionnement</span>
+        <h2>Comment se déroule le challenge</h2>
+        <p>7 étapes claires, du début à la fin.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-axe"></div>
+        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">01</div><div class="timeline-ic" style="background:#fff7ed;color:#FF7A00;"><i class="fa-solid fa-user-plus"></i></div><h4>Inscription</h4><p>Tu remplis le formulaire et rejoins officiellement la saison en cours.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d" data-anim="droite"><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">02</div><div class="timeline-ic" style="background:#f0fdf4;color:#10b981;"><i class="fa-brands fa-whatsapp"></i></div><h4>Groupe WhatsApp</h4><p>Tu reçois le lien du groupe officiel pour suivre les annonces.</p></div></div>
+        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">03</div><div class="timeline-ic" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-bullhorn"></i></div><h4>Réception du défi</h4><p>Le jour J, le défi est annoncé. Le chrono démarre immédiatement.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d timeline-cle" data-anim="droite">
+          <div class="timeline-point timeline-point-or"></div>
+          <div class="timeline-carte timeline-carte-or">
+            <div class="timeline-num">04</div>
+            <div class="timeline-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-laptop-code"></i></div>
+            <h4>Réalisation — 7 jours</h4>
+            <p>Tu travailles sur ton projet. C'est ici que tout se joue. Donne le meilleur.</p>
+            <div class="timeline-barre-wrap"><div class="timeline-barre-bg"><div class="timeline-barre-fill"></div></div><span>7 jours</span></div>
+          </div>
+        </div>
+        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">05</div><div class="timeline-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-paper-plane"></i></div><h4>Soumission</h4><p>Tu envoies ton projet via la page dédiée avant la date limite.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d" data-anim="droite"><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">06</div><div class="timeline-ic" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-magnifying-glass"></i></div><h4>Évaluation jury</h4><p>Des jurys qualifiés évaluent chaque projet sur des critères transparents.</p></div></div>
+        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">07</div><div class="timeline-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-trophy"></i></div><h4>Publication des résultats</h4><p>Les résultats sont publiés. Les meilleurs sont mis en lumière.</p></div><div class="timeline-point"></div></div>
+      </div>
+      <div class="timeline-note" data-anim="bas">
+        <i class="fa-solid fa-circle-info"></i>
+        <p>Les défis sont organisés par catégorie pour garantir une compétition équitable entre participants du même domaine.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ORGANISATION -->
+  <section class="section section-organisation" id="organisation">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">Organisation</span>
+        <h2>Comment les projets sont évalués</h2>
+        <p>Un processus rigoureux, transparent et équitable.</p>
+      </div>
+      <div class="orga-grille">
+        <div class="orga-carte" data-anim="bas"><span class="orga-num">01</span><div class="orga-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-inbox"></i></div><h4>Réception</h4><p>Tous les projets soumis sont centralisés et vérifiés.</p></div>
+        <div class="orga-carte" data-anim="bas"><span class="orga-num">02</span><div class="orga-ic" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-user-tie"></i></div><h4>Évaluation jury</h4><p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p></div>
+        <div class="orga-carte" data-anim="bas"><span class="orga-num">03</span><div class="orga-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-list-check"></i></div><h4>Vérification</h4><p>Les notes sont consolidées avant toute publication officielle.</p></div>
+        <div class="orga-carte" data-anim="bas"><span class="orga-num">04</span><div class="orga-ic" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-chart-bar"></i></div><h4>Publication</h4><p>Le classement final est publié sur la plateforme et annoncé dans le groupe.</p></div>
+      </div>
+
+      <!-- Bannière illustrative -->
+      <div class="orga-banniere" data-anim="bas">
+        <div class="orga-banniere-img"></div>
+        <div class="orga-banniere-contenu">
+          <h3>Une évaluation transparente, des résultats qui comptent</h3>
+          <p>Chaque projet est évalué avec soin par des professionnels. Ton travail mérite une attention réelle pas juste un score.</p>
+          <a href="inscription.html" class="bouton-principal">
+            <i class="fa-solid fa-rocket"></i>
+            Rejoindre le challenge
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TARIFS -->
+  <section class="section section-tarifs" id="tarifs">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">Tarifs</span>
+        <h2>Rejoindre une saison</h2>
+        <p>Des frais simples, transparents et justifiés.</p>
+      </div>
+      <div class="tarifs-grille">
+        <div class="tarif-carte" data-anim="gauche">
+          <div class="tarif-header"><div class="tarif-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-bolt"></i></div><div><span class="tarif-nom">Saison normale</span><div class="tarif-prix"><strong>1 000</strong><span>FCFA</span></div></div></div>
+          <ul class="tarif-liste">
+            <li><i class="fa-solid fa-check"></i> Accès complet au challenge</li>
+            <li><i class="fa-solid fa-check"></i> Groupe WhatsApp officiel</li>
+            <li><i class="fa-solid fa-check"></i> Évaluation par les jurys</li>
+            <li><i class="fa-solid fa-check"></i> Résultats publiés en ligne</li>
+            <li><i class="fa-solid fa-check"></i> Certificat de participation</li>
+          </ul>
+          <a href="inscription.html" class="bouton-secondaire">Je m'inscris</a>
+        </div>
+        <div class="tarif-carte tarif-vedette" data-anim="droite">
+          <div class="tarif-badge">Saison spéciale</div>
+          <div class="tarif-header"><div class="tarif-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-crown"></i></div><div><span class="tarif-nom">Saison finale</span><div class="tarif-prix tarif-prix-vedette"><strong>2 000</strong><span>FCFA</span></div></div></div>
+          <ul class="tarif-liste">
+            <li><i class="fa-solid fa-check"></i> Tout inclus dans la saison normale</li>
+            <li><i class="fa-solid fa-check"></i> Défi plus intense et ambitieux</li>
+            <li><i class="fa-solid fa-check"></i> Jury de haut niveau</li>
+            <li><i class="fa-solid fa-check"></i> Visibilité maximale pour les gagnants</li>
+            <li><i class="fa-solid fa-check"></i> Récompenses spéciales</li>
+          </ul>
+          <a href="inscription.html" class="bouton-principal">Je m'inscris</a>
+        </div>
+      </div>
+      <div class="tarifs-note" data-anim="bas">
+        <i class="fa-solid fa-circle-info"></i>
+        <p>Ces frais couvrent l'organisation, la plateforme et la gestion des évaluations. Chaque centime sert directement à t'offrir une meilleure expérience.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section section-faq" id="faq">
+    <div class="section-conteneur">
+      <div class="section-entete" data-anim="bas">
+        <span class="badge-section">FAQ</span>
+        <h2>Questions fréquentes</h2>
+        <p>Tout ce que tu dois savoir avant de te lancer.</p>
+      </div>
+      <div class="faq-liste">
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Pourquoi le challenge est-il payant ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Les frais couvrent l'organisation, la plateforme, les jurys et le suivi. Ils garantissent aussi l'engagement sérieux des participants.</p></div></div>
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Qui peut participer ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Tout étudiant ou jeune créatif ayant des bases en développement web, design UI/UX, graphisme ou IA créative. La motivation suffit.</p></div></div>
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Combien de temps dure le défi ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Exactement 7 jours à partir de l'annonce du thème dans le groupe WhatsApp. Passé ce délai, les soumissions ne sont plus acceptées.</p></div></div>
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Comment les gagnants sont-ils choisis ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Les projets sont évalués par des jurys sur la qualité, la créativité, le respect du brief et le rendu global.</p></div></div>
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Que se passe-t-il après mon inscription ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Tu reçois une confirmation puis le lien du groupe WhatsApp. Tu seras informé de la date de début et du thème.</p></div></div>
+        <div class="faq-item" data-anim="bas"><button class="faq-q"><span>Les défis sont-ils organisés par catégorie ?</span><i class="fa-solid fa-plus faq-icone"></i></button><div class="faq-r"><p>Oui. Chaque profil reçoit un brief adapté. L'évaluation se fait par catégorie pour une compétition équitable.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-conteneur">
+      <div class="footer-grille">
+        <div class="footer-col footer-marque">
+          <a href="index.html" class="footer-logo">
+            <img src="img/log_techforge.png" alt="TechForge" class="nav-logo-img" />
+            <span class="nav-logo-nom">TechForge</span>
+          </a>
+          <p>Le challenge créatif 7 jours pour développeurs, designers et créateurs qui veulent prouver leur talent.</p>
+          <div class="footer-reseaux">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Explorer</h5>
+          <ul class="footer-liens">
+            <li><a href="#a-propos">À propos</a></li>
+            <li><a href="#cible">Cible</a></li>
+            <li><a href="#fonctionnement">Fonctionnement</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Participer</h5>
+          <ul class="footer-liens">
+            <li><a href="inscription.html">S'inscrire</a></li>
+            <li><a href="soumission.html">Soumettre un projet</a></li>
+            <li><a href="classement.html">Classement</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Le créateur</h5>
+          <p class="footer-desc">TechForge est un projet créé pour valoriser les talents du numérique en Afrique francophone.</p>
+          <a href="#" class="footer-portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i>Voir le portfolio</a>
+        </div>
+      </div>
+      <div class="footer-bas">
+        <p>© 2026 TechForge — Tous droits réservés.</p>
+        <p>Fait avec <i class="fa-solid fa-heart" style="color:#ef4444;"></i> pour la communauté créative.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ASSISTANT IA -->
+  <div class="assistant-wrap" id="assistantWrap">
+    <div class="assistant-fenetre" id="assistantFenetre">
+      <div class="assistant-header">
+        <div class="assistant-header-info">
+          <div class="assistant-avatar"><i class="fa-solid fa-robot"></i></div>
+          <div><strong>Assistant TechForge</strong><span>Répond instantanément</span></div>
+        </div>
+        <button class="assistant-fermer" id="assistantFermer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="assistant-messages" id="assistantMessages">
+        <div class="assistant-msg bot">
+          <p>Bonjour ! Je suis l'assistant TechForge. Comment puis-je t'aider ?</p>
+          <div class="assistant-sugg">
+            <button class="sugg-btn" data-q="inscription">S'inscrire</button>
+            <button class="sugg-btn" data-q="prix">Les prix</button>
+            <button class="sugg-btn" data-q="duree">Durée du défi</button>
+            <button class="sugg-btn" data-q="soumission">Soumettre</button>
+            <button class="sugg-btn" data-q="whatsapp">WhatsApp</button>
+            <button class="sugg-btn" data-q="classement">Classement</button>
+          </div>
+        </div>
+      </div>
+      <div class="assistant-saisie">
+        <input type="text" id="assistantInput" placeholder="Pose ta question..." />
+        <button id="assistantEnvoyer"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+    <button class="assistant-btn" id="assistantBtn" aria-label="Assistant TechForge">
+      <i class="fa-solid fa-robot"></i>
+    </button>
+  </div>
+
+  <script src="js/accueil.js"></script>
+</body>
+</html>
