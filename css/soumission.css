@@ -1,5 +1,5 @@
 /* ================================================================
-   TECHFORGE — soumission.css — Autonome
+   TechForgeAfro soumission.css — Autonome
 ================================================================ */
 
 /* ── RESET ── */
@@ -390,7 +390,10 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   border-radius: 16px;
   padding: 2rem 1.8rem;
   margin-bottom: 2rem;
+  display: flex;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
   gap: 1.2rem;
 }
 [data-theme="dark"] .soumission-message { background: #1e2433; border-color: #1e2d45; }
@@ -423,6 +426,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .bouton-message {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
   background: linear-gradient(135deg, #f59e0b, #FF7A00);
   color: #fff;
@@ -436,7 +440,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .bouton-message:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(245,158,11,0.4); }
 
 .bouton-message-bleu {
-  background: linear-gradient(135deg, #3B82F6, #6366f1);
+  background: linear-gradient(135deg, #f67d3b, #f19063);
 }
 .bouton-message-bleu:hover { box-shadow: 0 6px 18px rgba(59,130,246,0.4); }
 

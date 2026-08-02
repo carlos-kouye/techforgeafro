@@ -1,13 +1,12 @@
 /* ================================================================
-   TECHFORGE — accueil.js (fichier JS global)
+   TechForgeAfro — accueil.js (fichier JS global)
 
    CONFIGURATION — modifie uniquement ces valeurs :
 ================================================================ */
 var URL_APPS_SCRIPT       = "https://script.google.com/macros/s/AKfycbxvFlFr0WGsT9ifCzCUO2EjuXn2LnL4KlTvkxL9OE7jTLhI8-mYEvVzIfd4YZpo7eb5/exec";
-var SOUMISSION_OUVERTE    = false;  // true = formulaire accessible
-var CLASSEMENT_DISPONIBLE = false;  // true = résultats visibles
+var SOUMISSION_OUVERTE    = false;
+var CLASSEMENT_DISPONIBLE = false;
 var DATE_LIMITE           = new Date("2026-12-31T23:59:59");
-var MOT_DE_PASSE_ADMIN    = "techforge2026";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -30,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var boutonTheme = document.getElementById("toggleTheme");
   var htmlEl      = document.documentElement;
 
-  var themeSauvegarde = localStorage.getItem("techforge-theme") || "light";
-  htmlEl.setAttribute("data-theme", themeSauvegarde);
+  htmlEl.setAttribute("data-theme", localStorage.getItem("techforge-theme") || "light");
 
   if (boutonTheme) {
     boutonTheme.addEventListener("click", function () {
@@ -92,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ================================================================
-     5. ICÔNE PROFIL — visible si inscrit
+     5. ICÔNE PROFIL
   ================================================================ */
   var navProfil = document.getElementById("navProfil");
   if (navProfil) {
@@ -106,15 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
   ================================================================ */
   var elementsAAnimer = document.querySelectorAll("[data-anim]");
   if (elementsAAnimer.length > 0) {
-    var obs = new IntersectionObserver(function (entrees) {
+    var obsAnim = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (entree) {
         if (entree.isIntersecting) {
           entree.target.classList.add("visible");
-          obs.unobserve(entree.target);
+          obsAnim.unobserve(entree.target);
         }
       });
     }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-    elementsAAnimer.forEach(function (el) { obs.observe(el); });
+    elementsAAnimer.forEach(function (el) { obsAnim.observe(el); });
   }
 
 
@@ -187,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prix        : "La <strong>Saison normale</strong> coûte <strong>1 000 FCFA</strong> et la <strong>Saison finale</strong> coûte <strong>2 000 FCFA</strong>.",
     duree       : "Le défi dure exactement <strong>7 jours</strong> à partir de l'annonce du thème dans le groupe WhatsApp.",
     soumission  : "Va dans <strong>Participer → Soumettre un projet</strong>. Tu as besoin d'un lien GitHub, Figma, Drive ou autre selon ta catégorie.",
-    whatsapp    : "Le lien du groupe WhatsApp t'est envoyé <strong>après confirmation d'inscription</strong> sur la page de confirmation.",
+    whatsapp    : "Le lien du groupe WhatsApp t'est envoyé <strong>après confirmation d'inscription</strong>.",
     classement  : "Les résultats sont publiés sur la page <strong>Classement</strong> après évaluation par les jurys.",
     categorie   : "4 catégories : <strong>Dev Web</strong>, <strong>UI/UX Design</strong>, <strong>Design Graphique</strong> et <strong>IA & Créativité</strong>.",
     default     : "Je peux t'aider sur : l'<strong>inscription</strong>, les <strong>prix</strong>, la <strong>durée</strong>, la <strong>soumission</strong>, le <strong>WhatsApp</strong> ou le <strong>classement</strong>."
@@ -196,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function trouverReponse(texte) {
     texte = texte.toLowerCase();
     if (texte.includes("inscri"))                                    return reponses.inscription;
-    if (texte.includes("prix") || texte.includes("fcfa") || texte.includes("coût")) return reponses.prix;
+    if (texte.includes("prix") || texte.includes("fcfa"))            return reponses.prix;
     if (texte.includes("dur") || texte.includes("jour"))             return reponses.duree;
     if (texte.includes("soumet") || texte.includes("projet"))        return reponses.soumission;
     if (texte.includes("whatsapp") || texte.includes("groupe"))      return reponses.whatsapp;
@@ -254,15 +252,15 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ================================================================
      11. CHRONO SOUMISSION
   ================================================================ */
-  var chronoZone    = document.getElementById("chronoZone");
-  var delaiExpire   = document.getElementById("delaiExpire");
+  var chronoZone     = document.getElementById("chronoZone");
+  var delaiExpire    = document.getElementById("delaiExpire");
   var formulaireZone = document.getElementById("formulaireZone");
 
   if (chronoZone) {
     function mettreAJourChrono() {
       var diff = DATE_LIMITE - new Date();
       if (diff <= 0) {
-        chronoZone.style.display      = "none";
+        chronoZone.style.display = "none";
         if (formulaireZone) formulaireZone.style.display = "none";
         if (delaiExpire)    delaiExpire.style.display    = "block";
         return;
@@ -280,17 +278,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ================================================================
-     12. PAGE SOUMISSION — vérification + état saison
+     12. PAGE SOUMISSION — vérification inscription + état saison
   ================================================================ */
   var soumissionContenu = document.getElementById("soumissionContenu");
   var msgNonInscrit     = document.getElementById("msgNonInscrit");
   var msgPasOuvert      = document.getElementById("msgPasOuvert");
 
   if (soumissionContenu) {
-    var estInscrit = localStorage.getItem("techforge-inscrit") === "oui";
+    var estInscrit  = localStorage.getItem("techforge-inscrit") === "oui";
+    var dejasoumis  = localStorage.getItem("techforge-soumis")  === "oui";
+    var msgDejasoumis = document.getElementById("msgDejasoumis");
+
     if (!estInscrit) {
       soumissionContenu.style.display = "none";
       if (msgNonInscrit) msgNonInscrit.style.display = "flex";
+    } else if (dejasoumis) {
+      soumissionContenu.style.display = "none";
+      if (msgDejasoumis) msgDejasoumis.style.display = "flex";
     } else if (!SOUMISSION_OUVERTE) {
       soumissionContenu.style.display = "none";
       if (msgPasOuvert) msgPasOuvert.style.display = "flex";
@@ -410,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var btnDeconnexion = document.getElementById("btnDeconnexion");
     if (btnDeconnexion) {
       btnDeconnexion.addEventListener("click", function () {
-        if (confirm("Veux-tu vraiment te déconnecter ? Tes données locales seront effacées.")) {
+        if (confirm("Veux-tu vraiment te déconnecter ?")) {
           ["techforge-inscrit","techforge-nom","techforge-email",
            "techforge-universite","techforge-niveau","techforge-categorie",
            "techforge-date","techforge-soumis"].forEach(function(k) {
@@ -424,20 +428,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ================================================================
-     16. FORMULAIRE INSCRIPTION → Google Sheets
-     Correction : utilisation de no-cors + gestion d'erreur améliorée
+     16. ENVOI JSONP — fonction utilitaire
+     Envoie les données via balise <script> — contourne CORS complètement
+  ================================================================ */
+  function envoyerJSONP(params, onSucces, onErreur) {
+    var callbackName = "cb_" + Date.now();
+    var url = URL_APPS_SCRIPT + "?callback=" + callbackName;
+
+    // Ajoute les paramètres à l'URL
+    Object.keys(params).forEach(function(cle) {
+      url += "&" + encodeURIComponent(cle) + "=" + encodeURIComponent(params[cle]);
+    });
+
+    // Timeout 10 secondes
+    var timeout = setTimeout(function() {
+      delete window[callbackName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+      onErreur("Délai dépassé. Vérifie ta connexion internet.");
+    }, 10000);
+
+    // Callback global appelé par Apps Script
+    window[callbackName] = function(resultat) {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      if (script.parentNode) script.parentNode.removeChild(script);
+      onSucces(resultat);
+    };
+
+    // Injecte le script
+    var script = document.createElement("script");
+    script.src = url;
+    script.onerror = function() {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      onErreur("Erreur de connexion. Vérifie ta connexion internet.");
+    };
+    document.head.appendChild(script);
+  }
+
+
+  /* ================================================================
+     17. PAGE INSCRIPTION — blocage si déjà inscrit
+  ================================================================ */
+  var inscriptionDeja  = document.getElementById("inscriptionDeja");
+  var inscriptionCarte = document.getElementById("inscriptionCarte");
+
+  if (inscriptionDeja && inscriptionCarte) {
+    if (localStorage.getItem("techforge-inscrit") === "oui") {
+      // Déjà inscrit → cache le formulaire, montre le message
+      inscriptionCarte.style.display = "none";
+      inscriptionDeja.style.display  = "flex";
+
+      var nomSauvegarde = localStorage.getItem("techforge-nom") || "";
+      var dejaEl = document.getElementById("dejaInscritNom");
+      if (dejaEl && nomSauvegarde) {
+        dejaEl.textContent = "Tu es inscrit en tant que " + nomSauvegarde + ". Tu peux voir ton profil ou te déconnecter.";
+      }
+    }
+
+    // Bouton déconnexion depuis inscription
+    var btnDesinscrit = document.getElementById("btnDesinscrit");
+    if (btnDesinscrit) {
+      btnDesinscrit.addEventListener("click", function () {
+        if (confirm("Veux-tu vraiment te déconnecter ?")) {
+          ["techforge-inscrit","techforge-nom","techforge-email",
+           "techforge-universite","techforge-niveau","techforge-categorie",
+           "techforge-date","techforge-soumis"].forEach(function(k) {
+            localStorage.removeItem(k);
+          });
+          inscriptionDeja.style.display  = "none";
+          inscriptionCarte.style.display = "block";
+        }
+      });
+    }
+  }
+
+
+  /* ================================================================
+     18. FORMULAIRE INSCRIPTION
   ================================================================ */
   var formulaireInscription = document.getElementById("formulaireInscription");
 
   if (formulaireInscription) {
 
-    /* Validation d'un champ */
-    function validerChamp(idChamp, idErreur, condition) {
+    // Regex email stricte
+    function emailValide(email) {
+      return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
+    }
+
+    // Nom valide : min 3 chars, pas que des chiffres
+    function nomValide(nom) {
+      return nom.trim().length >= 3 && /[a-zA-ZÀ-ÿ]/.test(nom);
+    }
+
+    function validerChamp(idChamp, idErreur, condition, messageErreur) {
       var champ  = document.getElementById(idChamp);
       var erreur = document.getElementById(idErreur);
       if (!champ || !erreur) return true;
       if (!condition) {
         champ.classList.add("erreur");
+        if (messageErreur) erreur.textContent = messageErreur;
         erreur.classList.add("visible");
         return false;
       }
@@ -446,13 +536,30 @@ document.addEventListener("DOMContentLoaded", function () {
       return true;
     }
 
-    /* Efface erreur au fur et à mesure */
+    function afficherErreurGlobale(message) {
+      var zone  = document.getElementById("erreurGlobale");
+      var texte = document.getElementById("erreurGlobaleTexte");
+      if (zone && texte) {
+        texte.textContent  = message;
+        zone.style.display = "flex";
+      }
+    }
+
+    function cacherErreurGlobale() {
+      var zone = document.getElementById("erreurGlobale");
+      if (zone) zone.style.display = "none";
+    }
+
     formulaireInscription.querySelectorAll("input, select").forEach(function (el) {
-      el.addEventListener("input", function () { el.classList.remove("erreur"); });
+      el.addEventListener("input", function () {
+        el.classList.remove("erreur");
+        cacherErreurGlobale();
+      });
     });
 
     formulaireInscription.addEventListener("submit", function (e) {
       e.preventDefault();
+      cacherErreurGlobale();
 
       var nomEl   = document.getElementById("nomComplet");
       var emailEl = document.getElementById("email");
@@ -460,13 +567,22 @@ document.addEventListener("DOMContentLoaded", function () {
       var nivEl   = document.getElementById("niveau");
       var catEl   = document.getElementById("categorie");
 
-      /* Validation */
       var ok = [
-        validerChamp("nomComplet", "erreurNom",       nomEl  && nomEl.value.trim().length > 1),
-        validerChamp("email",      "erreurEmail",      emailEl && emailEl.value.includes("@")),
-        validerChamp("universite", "erreurUniversite", univEl && univEl.value.trim().length > 1),
-        validerChamp("niveau",     "erreurNiveau",     nivEl  && nivEl.value !== ""),
-        validerChamp("categorie",  "erreurCategorie",  catEl  && catEl.value !== ""),
+        validerChamp("nomComplet", "erreurNom",
+          nomEl && nomValide(nomEl.value),
+          "Entrez un nom valide (min 3 lettres)."),
+        validerChamp("email", "erreurEmail",
+          emailEl && emailValide(emailEl.value.trim()),
+          "Entrez une adresse email valide (ex: nom@gmail.com)."),
+        validerChamp("universite", "erreurUniversite",
+          univEl && univEl.value.trim().length >= 3,
+          "Entrez le nom de votre université (min 3 caractères)."),
+        validerChamp("niveau", "erreurNiveau",
+          nivEl && nivEl.value !== "",
+          "Veuillez sélectionner votre niveau."),
+        validerChamp("categorie", "erreurCategorie",
+          catEl && catEl.value !== "",
+          "Veuillez choisir une catégorie."),
       ].every(Boolean);
 
       if (!ok) return;
@@ -481,52 +597,53 @@ document.addEventListener("DOMContentLoaded", function () {
                          " à " +
                          maintenant.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-      var donnees = {
-        type:       "inscription",
-        nom:        nomEl.value.trim(),
-        email:      emailEl.value.trim(),
-        universite: univEl.value.trim(),
-        niveau:     nivEl.value,
-        categorie:  catEl.value,
-      };
-
-      /* Envoi vers Apps Script */
-      fetch(URL_APPS_SCRIPT, {
-        method:  "POST",
-        mode:    "no-cors", /* évite les erreurs CORS */
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(donnees),
-      })
-      .then(function () {
-        /* no-cors = pas de réponse lisible, on considère que c'est OK */
-        localStorage.setItem("techforge-inscrit",    "oui");
-        localStorage.setItem("techforge-nom",        donnees.nom);
-        localStorage.setItem("techforge-email",      donnees.email);
-        localStorage.setItem("techforge-universite", donnees.universite);
-        localStorage.setItem("techforge-niveau",     donnees.niveau);
-        localStorage.setItem("techforge-categorie",  donnees.categorie);
-        localStorage.setItem("techforge-date",       dateFormatee);
-        window.location.href = "confirmation.html";
-      })
-      .catch(function (err) {
-        console.error("Erreur inscription :", err);
-        if (txt) txt.textContent = "Erreur de connexion. Vérifie ta connexion internet.";
-        if (txt) txt.style.color = "#ef4444";
-        if (btn) btn.disabled = false;
-      });
+      envoyerJSONP(
+        {
+          action:     "inscription",
+          nom:        nomEl.value.trim(),
+          email:      emailEl.value.trim().toLowerCase(),
+          universite: univEl.value.trim(),
+          niveau:     nivEl.value,
+          categorie:  catEl.value,
+        },
+        function(resultat) {
+          if (resultat.succes) {
+            localStorage.setItem("techforge-inscrit",    "oui");
+            localStorage.setItem("techforge-nom",        nomEl.value.trim());
+            localStorage.setItem("techforge-email",      emailEl.value.trim().toLowerCase());
+            localStorage.setItem("techforge-universite", univEl.value.trim());
+            localStorage.setItem("techforge-niveau",     nivEl.value);
+            localStorage.setItem("techforge-categorie",  catEl.value);
+            localStorage.setItem("techforge-date",       dateFormatee);
+            window.location.href = "confirmation.html";
+          } else {
+            if (resultat.code === "DEJA_INSCRIT") {
+              afficherErreurGlobale("Cet email est déjà inscrit à cette saison. Si tu penses que c'est une erreur, contacte-nous via WhatsApp.");
+              validerChamp("email", "erreurEmail", false, "Email déjà utilisé pour une inscription.");
+            } else {
+              afficherErreurGlobale("Une erreur est survenue : " + resultat.message + ". Réessaie ou contacte-nous.");
+            }
+            if (btn) btn.disabled = false;
+            if (txt) txt.textContent = "Réessayer";
+          }
+        },
+        function(erreur) {
+          afficherErreurGlobale(erreur);
+          if (btn) btn.disabled = false;
+          if (txt) txt.textContent = "Réessayer";
+        }
+      );
     });
   }
 
 
   /* ================================================================
-     17. FORMULAIRE SOUMISSION → Google Sheets
-     Lien supplémentaire obligatoire pour Dev Web
+     19. FORMULAIRE SOUMISSION
   ================================================================ */
   var formulaireSoumission = document.getElementById("formulaireSoumission");
 
   if (formulaireSoumission) {
 
-    /* Compteur commentaire */
     var textarea = document.getElementById("souCommentaire");
     var compteur = document.getElementById("compteurCommentaire");
     if (textarea && compteur) {
@@ -537,33 +654,31 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    /* Changer le hint + obligation selon la catégorie */
-    var souCategorie    = document.getElementById("souCategorie");
-    var hintLienSupp    = document.getElementById("hintLienSupp");
-    var reqDevWeb       = document.getElementById("reqDevWeb");
+    // Mise à jour hints selon catégorie
+    var souCategorie      = document.getElementById("souCategorie");
     var hintLienPrincipal = document.getElementById("hintLienPrincipal");
+    var hintLienSupp      = document.getElementById("hintLienSupp");
+    var reqDevWeb         = document.getElementById("reqDevWeb");
 
     if (souCategorie) {
       souCategorie.addEventListener("change", function () {
         var cat = souCategorie.value;
-
         if (cat === "dev-web") {
           if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien GitHub obligatoire";
-          if (hintLienSupp) hintLienSupp.textContent = "Lien du site déployé (Vercel, Netlify...) — obligatoire";
-          if (reqDevWeb) reqDevWeb.style.display = "inline-flex";
+          if (hintLienSupp)      hintLienSupp.textContent      = "Site déployé (Vercel, Netlify...) — obligatoire";
+          if (reqDevWeb)         reqDevWeb.style.display        = "inline-flex";
         } else if (cat === "ui-ux") {
           if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien Figma ou outil de maquette";
-          if (hintLienSupp) hintLienSupp.textContent = "Lien secondaire si besoin (optionnel)";
-          if (reqDevWeb) reqDevWeb.style.display = "none";
+          if (hintLienSupp)      hintLienSupp.textContent      = "Lien secondaire si besoin (optionnel)";
+          if (reqDevWeb)         reqDevWeb.style.display        = "none";
         } else {
           if (hintLienPrincipal) hintLienPrincipal.textContent = "Behance, Drive, Pinterest...";
-          if (hintLienSupp) hintLienSupp.textContent = "Lien supplémentaire (optionnel)";
-          if (reqDevWeb) reqDevWeb.style.display = "none";
+          if (hintLienSupp)      hintLienSupp.textContent      = "Lien supplémentaire (optionnel)";
+          if (reqDevWeb)         reqDevWeb.style.display        = "none";
         }
       });
     }
 
-    /* Validation */
     function validerChampSou(idChamp, idErreur, condition) {
       var champ  = document.getElementById(idChamp);
       var erreur = document.getElementById(idErreur);
@@ -590,23 +705,20 @@ document.addEventListener("DOMContentLoaded", function () {
       var lienEl     = document.getElementById("souLienPrincipal");
       var lienSuppEl = document.getElementById("souLienSupp");
       var commEl     = document.getElementById("souCommentaire");
+      var estDevWeb  = catEl && catEl.value === "dev-web";
 
-      var estDevWeb = catEl && catEl.value === "dev-web";
-
-      /* Lien supplémentaire obligatoire pour Dev Web */
       var lienSuppOk = true;
       if (estDevWeb) {
         lienSuppOk = validerChampSou(
-          "souLienSupp",
-          "erreurSouLienSupp",
+          "souLienSupp", "erreurSouLienSupp",
           lienSuppEl && lienSuppEl.value.trim().startsWith("http")
         );
       }
 
       var ok = [
-        validerChampSou("souNom",          "erreurSouNom",      nomEl  && nomEl.value.trim().length > 1),
-        validerChampSou("souCategorie",    "erreurSouCategorie",catEl  && catEl.value !== ""),
-        validerChampSou("souLienPrincipal","erreurSouLien",     lienEl && lienEl.value.trim().startsWith("http")),
+        validerChampSou("souNom",           "erreurSouNom",      nomEl  && nomEl.value.trim().length > 1),
+        validerChampSou("souCategorie",     "erreurSouCategorie",catEl  && catEl.value !== ""),
+        validerChampSou("souLienPrincipal", "erreurSouLien",     lienEl && lienEl.value.trim().startsWith("http")),
         lienSuppOk,
       ].every(Boolean);
 
@@ -617,35 +729,37 @@ document.addEventListener("DOMContentLoaded", function () {
       if (btn) btn.disabled = true;
       if (txt) txt.textContent = "Envoi en cours...";
 
-      var donnees = {
-        type:         "soumission",
-        nom:          nomEl.value.trim(),
-        categorie:    catEl.value,
-        lienPrincipal: lienEl.value.trim(),
-        lienSupp:     lienSuppEl ? lienSuppEl.value.trim() : "",
-        commentaire:  commEl ? commEl.value.trim() : "",
-      };
-
-      fetch(URL_APPS_SCRIPT, {
-        method:  "POST",
-        mode:    "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(donnees),
-      })
-      .then(function () {
-        localStorage.setItem("techforge-soumis", "oui");
-        if (txt) txt.textContent = "Projet envoyé avec succès !";
-        if (btn) {
-          btn.style.background = "#10b981";
-          btn.style.boxShadow  = "0 4px 18px rgba(16,185,129,0.4)";
+      envoyerJSONP(
+        {
+          action:        "soumission",
+          nom:           nomEl.value.trim(),
+          categorie:     catEl.value,
+          lienPrincipal: lienEl.value.trim(),
+          lienSupp:      lienSuppEl ? lienSuppEl.value.trim() : "",
+          commentaire:   commEl ? commEl.value.trim() : "",
+        },
+        function(resultat) {
+          if (resultat.succes) {
+            localStorage.setItem("techforge-soumis", "oui");
+            if (txt) txt.textContent = "Projet envoyé avec succès !";
+            if (btn) {
+              btn.style.background = "#10b981";
+              btn.style.boxShadow  = "0 4px 18px rgba(16,185,129,0.4)";
+            }
+          } else {
+            if (txt) txt.textContent = "Erreur : " + resultat.message;
+            if (txt) txt.style.color = "#ef4444";
+            if (btn) btn.disabled = false;
+          }
+        },
+        function(erreur) {
+          if (txt) txt.textContent = erreur;
+          if (txt) txt.style.color = "#ef4444";
+          if (btn) btn.disabled = false;
         }
-      })
-      .catch(function (err) {
-        console.error("Erreur soumission :", err);
-        if (txt) txt.textContent = "Erreur de connexion. Vérifie ta connexion internet.";
-        if (txt) txt.style.color = "#ef4444";
-        if (btn) btn.disabled = false;
-      });
+      );
     });
   }
-});
+
+
+}); // Fin DOMContentLoaded

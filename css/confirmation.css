@@ -38,7 +38,7 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 
 [data-theme="dark"] .navbar.scrolled { background: rgba(15,23,42,0.96); border-color: #1e2d45; }
 .nav-conteneur { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; max-width: 1200px; }
 .nav-logo { display: flex; align-items: center; gap: 0.55rem; flex-shrink: 0; }
-.nav-logo-icone { width: 34px; height: 34px; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF7A00, #3B82F6); color: #fff; font-size: 0.85rem; flex-shrink: 0; }
+.nav-logo-icone { width: 34px; height: 34px; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; flex-shrink: 0; }
 .nav-logo-icone img { width: 100%; height: 100%; object-fit: cover; }
 .nav-logo-texte { display: flex; flex-direction: column; line-height: 1; }
 .nav-logo-nom { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.05rem; color: #0f172a; }

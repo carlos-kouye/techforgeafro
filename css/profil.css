@@ -84,7 +84,6 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #FF7A00, #3B82F6);
   color: #fff;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -700,7 +699,20 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 @media (max-width: 768px) {
   .nav-capsule-wrap { display: none; }
   .hamburger { display: flex; }
-  .nav-droite { gap: 0.35rem; }
+  .nav-conteneur{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .nav-droite{
+    margin-left:auto;
+    margin-right: -5%;
+  }
+
+  .hamburger{
+    margin-left:0.5rem;
+  }
 
   .page-profil { padding: 6rem 1.5rem 3rem; }
 

@@ -1,5 +1,5 @@
 /* ================================================================
-   TECHFORGE — inscription.css — Autonome
+   TechForgeAfro inscription.css — Autonome
 ================================================================ */
 
 /* ── RESET ── */
@@ -516,10 +516,6 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 @media (max-width: 768px) {
   .nav-capsule-wrap { display: none; }
   .hamburger { display: flex; }
-  .nav-droite { gap: 0.35rem; }
-  .page-inscription { padding: 6rem 1.5rem 3rem; }
-  .formulaire-ligne { grid-template-columns: 1fr; }
-  .inscription-carte { padding: 1.8rem 1.2rem; }
   .nav-conteneur{
     display:flex;
     align-items:center;
@@ -532,8 +528,11 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   }
 
   .hamburger{
-    margin-left:0.35rem;
+    margin-left:0.5rem;
   }
+  .page-inscription { padding: 6rem 1.5rem 3rem; }
+  .formulaire-ligne { grid-template-columns: 1fr; }
+  .inscription-carte { padding: 1.8rem 1.2rem; }
 }
 
 @media (max-width: 480px) {
@@ -549,3 +548,86 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   .nav-logo-img { width: 30px; height: 30px; }
   .inscription-carte { padding: 1.3rem 0.9rem; }
 }
+
+/* ── Déjà inscrit ── */
+.inscription-deja {
+  background: #fff;
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 18px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+[data-theme="dark"] .inscription-deja {
+  background: #1e2433;
+  border-color: rgba(16,185,129,0.2);
+}
+
+.deja-icone {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(16,185,129,0.1);
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.inscription-deja h3 { color: #0f172a; margin-bottom: 0.4rem; }
+[data-theme="dark"] .inscription-deja h3 { color: #f1f5f9; }
+
+.inscription-deja p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 1.1rem;
+  font-family: 'Manrope', sans-serif;
+}
+[data-theme="dark"] .inscription-deja p { color: #8892a4; }
+
+.deja-boutons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bouton-desinscrit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #ef4444;
+  padding: 0.72rem 1.2rem;
+  border-radius: 11px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  font-family: 'Manrope', sans-serif;
+}
+.bouton-desinscrit:hover { background: rgba(239,68,68,0.14); }
+
+/* ── Erreur globale ── */
+.erreur-globale {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  background: rgba(239,68,68,0.07);
+  border: 1px solid rgba(239,68,68,0.22);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.86rem;
+  color: #ef4444;
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.55;
+}
+.erreur-globale i { margin-top: 2px; flex-shrink: 0; }

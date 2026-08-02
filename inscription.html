@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inscription — TechForge</title>
-  <meta name="description" content="Inscris-toi au challenge créatif TechForge et rejoins la communauté des créateurs." />
+  <title>Inscription TechForgeAfro</title>
+  <meta name="description" content="Inscris-toi au challenge créatif TechForgeAfro et rejoins la communauté des créateurs." />
   <link rel="icon" type="image/png" href="img/log_techforge.png" />
   <link rel="apple-touch-icon" href="img/log_techforge.png" />
   <link rel="stylesheet" href="css/inscription.css" />
@@ -22,7 +22,7 @@
       <a href="index.html" class="nav-logo">
         <img src="img/log_techforge.png" alt="TechForge" class="nav-logo-img" />
         <div class="nav-logo-texte">
-          <span class="nav-logo-nom">TechForge</span>
+          <span class="nav-logo-nom">TechForge<span style="color:#FF7A00; font-size: 8px;">Afro</span></span>
         </div>
       </a>
 
@@ -53,7 +53,7 @@
 
       <div class="nav-droite">
         <a class="nav-outil-btn nav-langue"
-           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforge.vercel.app/inscription.html"
+           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforgeafro.vercel.app/inscription.html"
            target="_blank" rel="noopener" title="Translate to English">
           <span>FR</span>
           <i class="fa-solid fa-globe"></i>
@@ -112,10 +112,38 @@
       <div class="inscription-entete" data-anim="bas">
         <span class="badge-section">Inscription</span>
         <h1>Rejoins le challenge</h1>
-        <p>Remplis ce formulaire pour participer à la prochaine saison TechForge.</p>
+        <p>Remplis ce formulaire pour participer à la prochaine saison TechForgeAfro.</p>
       </div>
 
-      <div class="inscription-carte" data-anim="bas">
+      <!-- Message si déjà inscrit -->
+      <div class="inscription-deja" id="inscriptionDeja" style="display:none;">
+        <div class="deja-icone">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div>
+          <h3>Tu es déjà inscrit !</h3>
+          <p id="dejaInscritNom">Tu participes déjà à cette saison.</p>
+          <div class="deja-boutons">
+            <a href="profil.html" class="bouton-formulaire" style="text-decoration:none;">
+              <i class="fa-solid fa-circle-user"></i>
+              Voir mon profil
+            </a>
+            <button type="button" class="bouton-desinscrit" id="btnDesinscrit">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Se déconnecter
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="inscription-carte" id="inscriptionCarte" data-anim="bas">
+
+        <!-- Erreur globale (doublon email, erreur serveur) -->
+        <div class="erreur-globale" id="erreurGlobale" style="display:none;">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span id="erreurGlobaleTexte"></span>
+        </div>
+
         <form class="formulaire" id="formulaireInscription" novalidate>
 
           <!-- Nom + Email -->
@@ -209,11 +237,13 @@
 
           <p class="formulaire-note">
             <i class="fa-solid fa-lock"></i>
-            Tes données sont utilisées uniquement pour le challenge TechForge.
+            Tes données sont utilisées uniquement pour le challenge TechForgeAfro.
           </p>
 
         </form>
       </div>
+
+      </div><!-- fin inscription-carte -->
 
     </div>
   </main>
