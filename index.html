@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body>    
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -74,12 +74,13 @@
       <!-- Bloc droit  -->
       <div class="nav-droite">
 
-        <a class="nav-outil-btn nav-langue"
-           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforgeafro.vercel.app"
-           target="_blank" rel="noopener" title="Translate to English">
-          <span>FR</span>
+
+        <div id="google_translate_element" style="display:none;"></div>
+
+        <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+          <span id="langueLabel">FR</span>
           <i class="fa-solid fa-globe"></i>
-        </a>
+        </button>
 
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
@@ -459,6 +460,17 @@
       <i class="fa-solid fa-robot"></i>
     </button>
   </div>
+      <!-- Google Translate -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script src="js/accueil.js"></script>
 </body>

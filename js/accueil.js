@@ -11,6 +11,38 @@ var DATE_LIMITE           = new Date("2026-12-31T23:59:59");
 
 document.addEventListener("DOMContentLoaded", function () {
 
+/* ── TRADUCTION ── */
+var btnTraduire = document.getElementById("btnTraduire");
+var langueLabel = document.getElementById("langueLabel");
+
+// Vérifie si la page est déjà traduite
+var enAnglais = document.cookie.indexOf("googtrans=/fr/en") !== -1;
+if (langueLabel) langueLabel.textContent = enAnglais ? "EN" : "FR";
+
+if (btnTraduire) {
+  btnTraduire.addEventListener("click", function () {
+    if (!enAnglais) {
+      // Passer en anglais
+      document.cookie = "googtrans=/fr/en; path=/";
+      document.cookie = "googtrans=/fr/en; path=/; domain=" + window.location.hostname;
+      langueLabel.textContent = "EN";
+      window.location.reload();
+    } else {
+      // Revenir en français — supprime le cookie
+      document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      document.cookie = "googtrans=; path=/; domain=" + window.location.hostname + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      langueLabel.textContent = "FR";
+      window.location.reload();
+    }
+  });
+}
+
+/* Cache la barre Google Translate */
+setTimeout(function () {
+  var barre = document.querySelector(".goog-te-banner-frame");
+  if (barre) barre.style.display = "none";
+  document.body.style.top = "0";
+}, 800);
 
   /* ================================================================
      1. NAVBAR — fond au scroll
