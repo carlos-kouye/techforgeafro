@@ -1,8 +1,6 @@
-/* ================================================================
-   TECHFORGE BJ — profil.css — Autonome
-================================================================ */
+/* TECHFORGE BJ  profil.css Autonome*/
 
-/* ── RESET ── */
+/* RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -26,15 +24,13 @@ ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.2; }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 [data-anim] { opacity: 0; transition: opacity 0.65s ease, transform 0.65s ease; }
 [data-anim="bas"]    { transform: translateY(36px); }
 [data-anim="droite"] { transform: translateX(44px); }
 [data-anim].visible  { opacity: 1; transform: translate(0,0); }
 
-/* ================================================================
-   NAVBAR
-================================================================ */
+/*NAVBAR */
 .navbar {
   position: fixed;
   top: 0; left: 0;
@@ -322,9 +318,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .menu-mobile-liste li a:hover { color: #FF7A00; background: rgba(255,122,0,0.06); }
 [data-theme="dark"] .menu-mobile-liste li a { color: #8892a4; }
 
-/* ================================================================
-   PAGE PROFIL
-================================================================ */
+/* PAGE PROFIL */
 .page-profil {
   min-height: 100vh;
   padding: 7rem 1.5rem 5rem;
@@ -345,7 +339,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   margin: 0 auto;
 }
 
-/* ── Non connecté ── */
+/* Non connecté */
 .profil-non-connecte {
   text-align: center;
   padding: 5rem 2rem;
@@ -404,7 +398,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .bouton-inscrire:hover { transform: translateY(-2px); box-shadow: 0 7px 22px rgba(255,122,0,0.42); }
 
-/* ── Header profil ── */
+/* Header profil */
 .profil-header {
   display: flex;
   align-items: center;
@@ -498,7 +492,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   transform: translateY(-1px);
 }
 
-/* ── Grille tableau de bord ── */
+/* tableau de bord  */
 .profil-grille {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -577,14 +571,13 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 [data-theme="dark"] .profil-etape-point { background: #334155; }
 
-/* Étape terminée */
 .profil-etape-done .profil-etape-point {
   background: #10b981;
   color: #fff;
   box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
 }
 
-/* Étape en attente */
+
 .profil-etape-point-attente {
   background: #f1f5f9;
   border: 2px dashed #cbd5e1;
@@ -618,7 +611,6 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   gap: 1.2rem;
 }
 
-/* Infos liste */
 .profil-infos-liste {
   display: flex;
   flex-direction: column;
@@ -693,9 +685,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .profil-btn-action:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(255,122,0,0.38); }
 
-/* ================================================================
-   RESPONSIVE
-================================================================ */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-capsule-wrap { display: none; }
   .hamburger { display: flex; }

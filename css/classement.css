@@ -1,8 +1,6 @@
-/* ================================================================
-   TECHFORGE BJ — classement.css — Autonome
-================================================================ */
+/* TECHFORGE BJ classement.css Autonome */
 
-/* ── RESET ── */
+/* RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -26,7 +24,7 @@ ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.2; }
 
-/* ── BADGE ── */
+/* BADGE */
 .badge-section {
   display: inline-block;
   background: rgba(255,122,0,0.1);
@@ -42,14 +40,12 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 [data-theme="dark"] .badge-section { color: #FF9F43; background: rgba(255,122,0,0.12); }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 [data-anim] { opacity: 0; transition: opacity 0.65s ease, transform 0.65s ease; }
 [data-anim="bas"] { transform: translateY(36px); }
 [data-anim].visible { opacity: 1; transform: translate(0,0); }
 
-/* ================================================================
-   NAVBAR — identique aux autres pages
-================================================================ */
+/* NAVBAR identique aux autres pages */
 .navbar {
   position: fixed;
   top: 0; left: 0;
@@ -359,9 +355,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .menu-mobile-cta:hover { opacity: 0.9; }
 
-/* ================================================================
-   PAGE CLASSEMENT
-================================================================ */
+/* PAGE CLASSEMENT */
 .page-classement {
   min-height: 100vh;
   padding: 7rem 1.5rem 5rem;
@@ -394,7 +388,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .classement-entete p { color: #64748b; font-family: 'Manrope', sans-serif; }
 [data-theme="dark"] .classement-entete p { color: #8892a4; }
 
-/* ── Message attente ── */
+/* Message attente */
 .classement-attente {
   text-align: center;
   padding: 4rem 2rem;
@@ -458,7 +452,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .bouton-retour:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(255,122,0,0.42); }
 
-/* ── PODIUM ── */
+/* PODIUM */
 .podium {
   display: flex;
   align-items: flex-end;
@@ -556,7 +550,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .podium-lien:hover { background: rgba(59,130,246,0.08); }
 
-/* ── FILTRES ── */
+/* FILTRES */
 .classement-filtres {
   display: flex;
   gap: 0.6rem;
@@ -588,7 +582,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   color: #8892a4;
 }
 
-/* ── TABLEAU ── */
+/*  TABLEAU  */
 .classement-tableau {
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -681,9 +675,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .cl-lien:hover { color: #FF7A00; }
 
-/* ================================================================
-   RESPONSIVE
-================================================================ */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-capsule-wrap { display: none; }
   .nav-cta { display: none !important; width: 0; padding: 0; margin: 0; overflow: hidden; }

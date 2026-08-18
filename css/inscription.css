@@ -1,8 +1,6 @@
-/* ================================================================
-   TechForgeAfro inscription.css — Autonome
-================================================================ */
+/* TechForgeAfro inscription.css Autonome */
 
-/* ── RESET ── */
+/* RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -44,9 +42,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 [data-anim="bas"] { transform: translateY(36px); }
 [data-anim].visible { opacity: 1; transform: translate(0,0); }
 
-/* ================================================================
-   NAVBAR
-================================================================ */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0; left: 0;
@@ -79,7 +75,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
   max-width: 1200px;
 }
 
-/* Logo — image PNG sans background */
+/* Logo image PNG sans background */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -354,9 +350,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .menu-mobile-cta:hover { opacity: 0.9; }
 
-/* ================================================================
-   PAGE INSCRIPTION
-================================================================ */
+/* PAGE INSCRIPTION */
 .page-inscription {
   min-height: 100vh;
   padding: 7rem 1.5rem 5rem;
@@ -510,9 +504,8 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .formulaire-note i { font-size: 0.75rem; }
 
-/* ================================================================
-   RESPONSIVE
-================================================================ */
+/* RESPONSIVE */
+
 @media (max-width: 768px) {
   .nav-capsule-wrap { display: none; }
   .hamburger { display: flex; }
@@ -615,7 +608,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 .bouton-desinscrit:hover { background: rgba(239,68,68,0.14); }
 
-/* ── Erreur globale ── */
+/* Erreur globale  */
 .erreur-globale {
   display: flex;
   align-items: flex-start;

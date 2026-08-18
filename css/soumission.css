@@ -1,8 +1,6 @@
-/* ================================================================
-   TechForgeAfro soumission.css — Autonome
-================================================================ */
+/* TechForgeAfro soumission.css Autonome */
 
-/* ── RESET ── */
+/* RESET */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -26,7 +24,7 @@ ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.2; }
 
-/* ── BADGE ── */
+/* BADGE */
 .badge-section {
   display: inline-block;
   background: rgba(255,122,0,0.1);
@@ -42,14 +40,12 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 [data-theme="dark"] .badge-section { color: #FF9F43; background: rgba(255,122,0,0.12); }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 [data-anim] { opacity: 0; transition: opacity 0.65s ease, transform 0.65s ease; }
 [data-anim="bas"] { transform: translateY(36px); }
 [data-anim].visible { opacity: 1; transform: translate(0,0); }
 
-/* ================================================================
-   NAVBAR
-================================================================ */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0; left: 0;
