@@ -67,9 +67,9 @@ h5 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spac
 
 .badge-section {
   display: inline-block;
-  background: rgba(255,122,0,0.1);
+  background: rgba(255, 123, 0, 0.09);
   color: #FF7A00;
-  border: 1px solid rgba(255,122,0,0.25);
+  border: 1px solid rgba(255, 94, 0, 0.559);
   padding: 0.28rem 0.9rem;
   border-radius: 30px;
   font-size: 0.72rem;
@@ -116,8 +116,8 @@ h5 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spac
 
 .bouton-secondaire {
   background: transparent;
-  color: #1e293b;
-  border: 1.5px solid #cbd5e1;
+  color: #fffcfc;
+  border: 1.5px solid #c15106;
 }
 .bouton-secondaire:hover { border-color: #FF7A00; color: #FF7A00; }
 [data-theme="dark"] .bouton-secondaire { color: #e2e8f0; border-color: #334155; }
@@ -492,17 +492,18 @@ iframe.goog-te-banner-frame {
 
 /* 5. HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 7rem 1.5rem 4rem;
+  padding: 7rem 1.5rem 2rem;
   position: relative;
   overflow: hidden;
-  background-color: #f8fafc;
+  /* Pas de couleur de fond — l'image de fond gère tout */
+  background: transparent !important;
 }
-[data-theme="dark"] .hero { background-color: #0F172A; }
+[data-theme="dark"] .hero { background: transparent !important; }
 
 /* Fond grille digitale */
 .hero-fond {
@@ -563,9 +564,9 @@ iframe.goog-te-banner-frame {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255,122,0,0.08);
-  color: #FF7A00;
-  border: 1px solid rgba(255,122,0,0.2);
+  background: rgba(255, 89, 0, 0.463);
+  color: #ffffff;
+  border: 1px solid rgba(255, 240, 225, 0.542);
   padding: 0.36rem 1rem;
   border-radius: 999px;
   font-size: 0.76rem;
@@ -588,7 +589,7 @@ iframe.goog-te-banner-frame {
 }
 
 .hero-titre {
-  color: #0f172a;
+  color: #000000c7;
   margin-bottom: 1.2rem;
   line-height: 1.22;
 }
@@ -603,7 +604,7 @@ iframe.goog-te-banner-frame {
   padding: 0.2em 0.8em;
 }
 .hero-encadre-texte {
-  background: linear-gradient(135deg, #FF7A00, #3B82F6);
+  background: linear-gradient(135deg, #ff5f09, #0160f9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -616,13 +617,13 @@ iframe.goog-te-banner-frame {
   height: 14px;
 }
 .coin-tl { top: 0; left: 0; border-top: 2px solid #FF7A00; border-left: 2px solid #FF7A00; }
-.coin-tr { top: 0; right: 0; border-top: 2px solid #3B82F6; border-right: 2px solid #3B82F6; }
+.coin-tr { top: 0; right: 0; border-top: 2px solid #0062ff; border-right: 2px solid #0062ff; }
 .coin-bl { bottom: 0; left: 0; border-bottom: 2px solid #FF7A00; border-left: 2px solid #FF7A00; }
-.coin-br { bottom: 0; right: 0; border-bottom: 2px solid #3B82F6; border-right: 2px solid #3B82F6; }
+.coin-br { bottom: 0; right: 0; border-bottom: 2px solid #0062ff; border-right: 2px solid #0062ff; }
 
 .hero-sous-titre {
   font-size: 0.97rem;
-  color: #64748b;
+  color: #ffffff;
   max-width: 440px;
   margin: 0 auto 2rem;
   line-height: 1.75;
@@ -693,7 +694,8 @@ iframe.goog-te-banner-frame {
   position: relative;
   z-index: 1;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: -1.5rem;
+  padding-bottom: 2.5%;
   color: #94a3b8;
   font-size: 0.9rem;
   animation: flotter 2.5s ease-in-out infinite;
@@ -777,6 +779,7 @@ iframe.goog-te-banner-frame {
   text-align: center;
   transition: all 0.24s ease;
 }
+
 .cible-carte:hover {
   border-color: #FF7A00;
   transform: translateY(-4px);
@@ -976,9 +979,10 @@ iframe.goog-te-banner-frame {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  min-height: 210px;
+  min-height: 250px;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: #0f172a;
 }
 .orga-banniere-img {
@@ -1001,22 +1005,21 @@ iframe.goog-te-banner-frame {
   position: relative;
   z-index: 1;
   padding: 2.2rem 2.5rem;
-  max-width: 540px;
-  align-items: center;
-  justify-content: center;
-  margin-right: -25%; /* desktop uniquement, annulé sur mobile */
+  max-width: 640px;
+  justify-content: center; /* desktop uniquement, annulé sur mobile */
 }
 .orga-banniere-contenu h3 {
   color: #fff;
   font-size: 1.3rem;
+  justify-content: center;
   margin-bottom: 0.65rem;
   font-family: 'Space Grotesk', sans-serif;
 }
 .orga-banniere-contenu p {
   color: rgba(255,255,255,0.68);
   font-size: 0.9rem;
-  line-height: 1.72;
   margin-bottom: 1.2rem;
+  justify-content: center;
   font-family: 'Manrope', sans-serif;
 }
 
@@ -1026,9 +1029,9 @@ iframe.goog-te-banner-frame {
 
 .tarifs-grille {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.4rem;
-  max-width: 720px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 960px;
   margin: 0 auto 1.6rem;
 }
 
@@ -1498,7 +1501,8 @@ iframe.goog-te-banner-frame { display: none !important; }
   .nav-langue { display: flex; }
 
   .hero {
-  padding: 1.8rem 1rem 1.8rem;
+  padding: 1.8rem 1rem 0.8rem;
+  min-height: 90vh;
   }
   .hero-contenu {
     display: flex;
@@ -1587,7 +1591,8 @@ iframe.goog-te-banner-frame { display: none !important; }
     padding: 0.65rem 1.2rem;
   }
   .hero {
-  padding: 1.8rem 1rem 1.8rem;
+  padding: 3rem 1rem 1.8rem;
+  min-height: 90vh;
   }
 }
 
@@ -1599,6 +1604,7 @@ iframe.goog-te-banner-frame { display: none !important; }
 
   .hero {
   padding: 1.8rem 1rem 1.8rem;
+  min-height: 90vh;
   }
   .hero-titre { font-size: clamp(1.45rem, 6.5vw, 1.9rem); line-height: 1.28; }
   .hero-badge { font-size: 0.7rem; }
@@ -1642,7 +1648,7 @@ iframe.goog-te-banner-frame { display: none !important; }
   .nav-logo-nom { font-size: 0.95rem; }
   .nav-logo-img { width: 30px; height: 30px; }
 
-  .hero { padding: 2.5rem 0.9rem 2.5rem; }
+  .hero { padding: 2.5rem 0.9rem 2rem; min-height: 90vh; }
   .hero-titre { font-size: 1.45rem; line-height: 1.3; }
   .hero-badge { font-size: 0.68rem; padding: 0.3rem 0.8rem; }
 
@@ -1666,7 +1672,8 @@ iframe.goog-te-banner-frame { display: none !important; }
 @media (max-width: 320px) {
   html { font-size: 15px; }
   .hero {
-  padding: 1.8rem 1rem 1.8rem;
+  padding: 1.8rem 1rem 1rem;
+  min-height: 90vh;
   }
   .hero-titre { font-size: 1.3rem; }
   .hero-badge { font-size: 0.65rem; }
@@ -1710,4 +1717,178 @@ iframe.goog-te-banner-frame { display: none !important; }
     display:none;
   }
 
+}
+/* ── Hero image de fond améliorée ── */
+/* Image de fond — couvre tout le hero */
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('../img/hero-bg.png') center bottom/cover no-repeat;
+}
+
+/* Overlay — voile uniforme transparent, SANS dégradé */
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Mode clair : voile blanc léger pour que le texte reste lisible */
+  background: rgba(255, 255, 255, 0.841);
+}
+
+/* Mode sombre : voile sombre léger */
+[data-theme="dark"] .hero-bg-overlay {
+  background: rgba(15,23,42,0.60);
+}
+
+/* Les halos restent au-dessus de l'image mais sous le contenu */
+.hero-fond {
+  z-index: 2;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+[data-theme="lignt"].hero-halo {
+  opacity: 0.55;
+}
+
+/* Renforcer les halos en mode sombre sur l'image */
+[data-theme="dark"] .hero-halo {
+  opacity: 0.55;
+}
+
+.hero-contenu {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: inherit;
+  padding: 0 1.5rem 2rem;
+}
+
+/* Personnages — cachés pour l'instant, l'image de fond suffit */
+.hero-personnage { display: none; }
+.hero-personnage-gauche { display: none; }
+.hero-personnage-droite { display: none; }
+
+.hero-centre {
+  z-index: 3;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Section cible 3+3 ── */
+.cible-grille {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+/* ── Tarifs 3 colonnes ── */
+.tarifs-grille {
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Organisation étapes horizontales ── */
+.orga-etapes {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+}
+.orga-etape {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+.orga-etape-icone {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 1rem;
+  flex-shrink: 0;
+}
+.orga-etape-ligne {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, #FF7A00, transparent);
+  margin: 0 auto 0.5rem;
+}
+.orga-etape-num {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #FF7A00;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.orga-etape h4 {
+  color: #0f172a;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+[data-theme="dark"] .orga-etape h4 { color: #f1f5f9; }
+.orga-etape p {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.6;
+  font-family: 'Manrope', sans-serif;
+}
+[data-theme="dark"] .orga-etape p { color: #8892a4; }
+.orga-connecteur {
+  color: #FF7A00;
+  font-size: 1.1rem;
+  padding-top: 1.2rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ── Bannière centrée ── */
+.orga-banniere-contenu {
+  text-align: center !important;
+  margin: 0 auto !important;
+  align-items: center !important;
+}
+
+/* RESPONSIVE — étapes organisation + cible + tarifs */
+@media (max-width: 900px) {
+  .cible-grille { grid-template-columns: repeat(2, 1fr) !important; }
+  .tarifs-grille { grid-template-columns: 1fr !important; max-width: 440px; }
+  .hero-contenu { grid-template-columns: 1fr; }
+  .hero-personnage { display: none; }
+}
+
+@media (max-width: 768px) {
+  .orga-etapes {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .orga-connecteur {
+    transform: rotate(90deg);
+    padding: 0;
+  }
+  .cible-grille { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .cible-grille { grid-template-columns: 1fr !important; }
 }

@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inscription TechForgeAfro</title>
+  <title>Inscription — TechForgeAfro | Rejoins le Challenge Créatif 7 Jours</title>
+  <meta name="description" content="Inscris-toi au challenge créatif TechForgeAfro. 7 jours pour construire un vrai projet en développement web, UI/UX design ou graphisme en Afrique." />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="inscription challenge, TechForgeAfro, développeur, designer, Afrique, Bénin" />
   <meta name="description" content="Inscris-toi au challenge créatif TechForgeAfro et rejoins la communauté des créateurs." />
   <link rel="icon" type="image/png" href="img/log_techforge.png" />
   <link rel="apple-touch-icon" href="img/log_techforge.png" />
@@ -52,12 +55,13 @@
       </div>
 
       <div class="nav-droite">
-        <a class="nav-outil-btn nav-langue"
-           href="https://translate.google.com/translate?sl=fr&tl=en&u=https://techforgeafro.vercel.app/inscription.html"
-           target="_blank" rel="noopener" title="Translate to English">
-          <span>FR</span>
-          <i class="fa-solid fa-globe"></i>
-        </a>
+        <div id="google_translate_element" style="display:none;"></div>
+      
+        <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+            <span id="langueLabel">FR</span>
+            <i class="fa-solid fa-globe"></i>
+        </button>
+        
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
           <i class="fa-solid fa-sun icone-soleil"></i>
@@ -153,8 +157,7 @@
                 <i class="fa-solid fa-user"></i>
                 Nom complet
               </label>
-              <input type="text" id="nomComplet" name="nom"
-                     placeholder="Prénom et Nom" autocomplete="name" />
+              <input type="text" id="nomComplet" name="nom" placeholder="Prénom et Nom" autocomplete="name" />
               <span class="champ-erreur" id="erreurNom">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 Veuillez entrer votre nom complet.
@@ -165,13 +168,31 @@
                 <i class="fa-solid fa-envelope"></i>
                 Adresse email
               </label>
-              <input type="email" id="email" name="email"
-                     placeholder="ton@email.com" autocomplete="email" />
+              <input type="email" id="email" name="email" placeholder="ton@email.com" autocomplete="email" />
               <span class="champ-erreur" id="erreurEmail">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 Veuillez entrer une adresse email valide.
               </span>
             </div>
+          </div>
+
+          <!-- Mot de passe -->
+          <div class="champ">
+            <label for="motDePasse">
+              <i class="fa-solid fa-lock"></i>
+              Mot de passe
+            </label>
+            <div class="champ-input-wrap">
+              <input type="password" id="motDePasse" name="motDePasse"
+                     placeholder="Minimum 6 caractères" autocomplete="new-password" />
+              <button type="button" class="champ-toggle-mdp" id="toggleMdp" aria-label="Voir mot de passe">
+                <i class="fa-solid fa-eye-slash"></i>
+              </button>
+            </div>
+            <span class="champ-erreur" id="erreurMdp">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              Le mot de passe doit faire au moins 6 caractères.
+            </span>
           </div>
 
           <!-- Université + Niveau -->
@@ -248,6 +269,10 @@
     </div>
   </main>
 
-  <script src="js/accueil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/translate.js"></script>
 </body>
 </html>

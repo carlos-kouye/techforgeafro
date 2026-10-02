@@ -50,6 +50,11 @@
       </div>
 
       <div class="nav-droite">
+        <div id="google_translate_element" style="display:none;"></div>
+          <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+            <span id="langueLabel">FR</span>
+            <i class="fa-solid fa-globe"></i>
+          </button>
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
           <i class="fa-solid fa-sun icone-soleil"></i>
@@ -199,9 +204,10 @@
             <div>
               <strong>Ce que tu dois soumettre selon ta catégorie :</strong>
               <ul class="guide-liste">
-                <li><i class="fa-solid fa-laptop-code" style="color:#3B82F6;"></i><span><strong>Dev Web</strong> — Lien GitHub + lien du site déployé (Vercel, Netlify...) obligatoires</span></li>
-                <li><i class="fa-solid fa-pen-ruler" style="color:#8b5cf6;"></i><span><strong>UI/UX</strong> — Lien Figma ou outil de maquette + lien secondaire si besoin</span></li>
-                <li><i class="fa-solid fa-palette" style="color:#ec4899;"></i><span><strong>Graphiste / IA</strong> — Lien vers tes visuels (Behance, Drive, Pinterest...)</span></li>
+                <li><i class="fa-solid fa-laptop-code" style="color:#3B82F6;"></i><span><strong>Dev Web</strong> Lien GitHub + lien du site déployé (Vercel, Netlify...) obligatoires</span></li>
+                <li><i class="fa-solid fa-pen-ruler" style="color:#8b5cf6;"></i><span><strong>UI/UX</strong> Lien Figma ou outil de maquette + lien secondaire si besoin</span></li>
+                <li><i class="fa-solid fa-palette" style="color:#ec4899;"></i><span><strong>Graphiste / IA</strong> Lien vers tes visuels (Behance, Drive, Pinterest...)</span></li>
+                <li><i class="fa-solid fa-compass-drafting" style="color:#FF7A00;"></i><span><strong>Constructeur de plans</strong> Lien vers tes plans (Drive, PDF, AutoCAD...)</span></li>
               </ul>
             </div>
           </div>
@@ -222,6 +228,7 @@
                   <option value="ui-ux">UI/UX Design</option>
                   <option value="graphisme">Design Graphique</option>
                   <option value="ia-creativite">IA &amp; Créativité</option>
+                  <option value="constructeur-plans">Constructeur de plans</option>
                 </select>
                 <span class="champ-erreur" id="erreurSouCategorie">Veuillez choisir une catégorie.</span>
               </div>
@@ -280,6 +287,9 @@
     </div>
   </main>
 
-  <script src="js/accueil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/soumission.js"></script>
+  <script src="js/translate.js"></script>
 </body>
 </html>

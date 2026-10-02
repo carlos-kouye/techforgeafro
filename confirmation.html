@@ -22,6 +22,11 @@
         </div>
       </a>
       <div class="nav-droite">
+        <div id="google_translate_element" style="display:none;"></div>
+          <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+            <span id="langueLabel">FR</span>
+            <i class="fa-solid fa-globe"></i>
+          </button>
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
           <i class="fa-solid fa-sun icone-soleil"></i>
@@ -68,6 +73,8 @@
     </div>
   </main>
 
-  <script src="js/accueil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/translate.js"></script>
 </body>
 </html>

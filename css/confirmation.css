@@ -51,8 +51,26 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 
 .nav-outil-btn .icone-lune   { display: block; }
 [data-theme="dark"] .nav-outil-btn .icone-soleil { display: block; }
 [data-theme="dark"] .nav-outil-btn .icone-lune   { display: none; }
+.nav-langue {
+  width: auto;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  gap: 0.3rem;
+  font-size: 0.73rem;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+}
 .nav-cta { display: inline-flex; align-items: center; padding: 0.44rem 1.1rem; border-radius: 999px; background: linear-gradient(135deg, #FF7A00, #FF9F43); color: #fff; font-size: 0.82rem; font-weight: 700; transition: all 0.22s; box-shadow: 0 3px 10px rgba(255,122,0,0.28); font-family: 'Manrope', sans-serif; }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255,122,0,0.44); }
+
+/* Cache la barre Google Translate */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame { display: none !important; }
+.skiptranslate { display: none !important; }
+#goog-gt-tt,
+.goog-te-balloon-frame { display: none !important; }
+body { top: 0 !important; }
 
 /* PAGE */
 .page-confirmation {

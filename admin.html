@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — TechForgeAfro</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="img/log_techforge.png" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Apply theme immediately to avoid flash -->
+  <script>
+    (function() {
+      var t = localStorage.getItem("techforge-theme") || "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <!-- CONNEXION -->
+  <div class="al-wrap" id="adminLogin">
+    <div class="al-card">
+      <div class="al-logo">
+        <img src="img/log_techforge.png" alt="TechForgeAfro" />
+        <div>
+          <span class="al-logo-nom">TechForge<span>Afro</span></span>
+          <span class="al-logo-sous">Administration</span>
+        </div>
+      </div>
+      <h2 class="al-titre">Connexion sécurisée</h2>
+      <p class="al-sous">Accès réservé à l'administrateur</p>
+      <div class="al-erreur" id="erreurLogin" style="display:none;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="erreurLoginTexte">Accès refusé.</span>
+      </div>
+      <form id="formLogin" novalidate>
+        <div class="al-champ">
+          <label for="loginEmail"><i class="fa-solid fa-envelope"></i> Email</label>
+          <input type="email" id="loginEmail" placeholder="votre@email.com" autocomplete="email" />
+        </div>
+        <div class="al-champ">
+          <label for="loginMdp"><i class="fa-solid fa-lock"></i> Mot de passe</label>
+          <div class="al-input-wrap">
+            <input type="password" id="loginMdp" placeholder="••••••••" autocomplete="current-password" />
+            <button type="button" class="al-eye" id="toggleLoginMdp">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="al-btn" id="btnLogin">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span id="btnLoginTexte">Se connecter</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PANNEAU ADMIN -->
+  <div class="ap-wrap" id="adminPanneau" style="display:none;">
+
+    <!-- SIDEBAR -->
+    <aside class="ap-sidebar" id="sidebar">
+      <div class="ap-sidebar-logo">
+        <img src="img/log_techforge.png" alt="TechForgeAfro" />
+        <div>
+          <span class="ap-logo-nom">TechForge<span>Afro</span></span>
+          <span class="ap-logo-sous">Admin</span>
+        </div>
+      </div>
+      <nav class="ap-nav">
+        <div class="ap-nav-label">Principal</div>
+        <a href="#" class="ap-nav-item actif" data-section="dashboard">
+          <i class="fa-solid fa-gauge-high"></i><span>Tableau de bord</span>
+        </a>
+        <a href="#" class="ap-nav-item" data-section="inscrits">
+          <i class="fa-solid fa-users"></i><span>Inscrits</span>
+          <span class="ap-nav-badge" id="badgeInscrits">—</span>
+        </a>
+        <a href="#" class="ap-nav-item" data-section="soumissions">
+          <i class="fa-solid fa-paper-plane"></i><span>Soumissions</span>
+          <span class="ap-nav-badge" id="badgeSoumissions">—</span>
+        </a>
+        <a href="#" class="ap-nav-item" data-section="classement">
+          <i class="fa-solid fa-trophy"></i><span>Classement</span>
+        </a>
+        <div class="ap-nav-label" style="margin-top:1.2rem;">Paramètres</div>
+        <a href="#" class="ap-nav-item" data-section="config">
+          <i class="fa-solid fa-sliders"></i><span>Configuration</span>
+        </a>
+      </nav>
+      <div class="ap-sidebar-bas">
+        <div class="ap-admin-info">
+          <div class="ap-admin-avatar"><i class="fa-solid fa-user-shield"></i></div>
+          <div>
+            <span class="ap-admin-nom">Administrateur</span>
+            <span class="ap-admin-email" id="adminEmailBadge">—</span>
+          </div>
+        </div>
+        <button class="ap-logout" id="btnLogout" title="Déconnexion">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENU -->
+    <div class="ap-main">
+
+      <!-- Topbar -->
+      <header class="ap-topbar">
+        <div class="ap-topbar-gauche">
+          <button class="ap-menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="ap-page-titre" id="pageTitre">Tableau de bord</h1>
+            <p class="ap-page-sous" id="pageSous">Vue d'ensemble de la saison</p>
+          </div>
+        </div>
+        <div class="ap-topbar-droite">
+          <button class="ap-theme-btn" id="toggleTheme" aria-label="Thème">
+            <i class="fa-solid fa-moon icone-lune"></i>
+            <i class="fa-solid fa-sun icone-soleil"></i>
+          </button>
+          <a href="index.html" class="ap-site-btn" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Voir le site
+          </a>
+        </div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="ap-section actif" id="sec-dashboard">
+        <!-- Stats principales -->
+        <div class="ap-stats-top">
+          <div class="ap-stat-big">
+            <div class="ap-stat-ic" style="background:rgba(255,122,0,0.12);color:#FF7A00;">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="ap-stat-info">
+              <strong id="statInscrits">—</strong>
+              <span>Participants inscrits</span>
+            </div>
+            <div class="ap-stat-chip" style="background:rgba(255,122,0,0.1);color:#FF7A00;">Total</div>
+          </div>
+          <div class="ap-stat-big">
+            <div class="ap-stat-ic" style="background:rgba(16,185,129,0.12);color:#10b981;">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div class="ap-stat-info">
+              <strong id="statSoumissions">—</strong>
+              <span>Projets soumis</span>
+            </div>
+            <div class="ap-stat-chip" style="background:rgba(16,185,129,0.1);color:#10b981;">Reçus</div>
+          </div>
+        </div>
+
+        <!-- Graphe répartition catégories -->
+        <div class="ap-card ap-repartition">
+          <div class="ap-card-titre">
+            <i class="fa-solid fa-chart-pie"></i>
+            Répartition par catégorie
+          </div>
+          <div class="ap-repartition-contenu">
+            <div class="ap-donut-wrap">
+              <canvas id="donutChart" width="160" height="160"></canvas>
+              <div class="ap-donut-centre">
+                <strong id="donutTotal">0</strong>
+                <span>inscrits</span>
+              </div>
+            </div>
+            <div class="ap-repartition-legende" id="legendeCategories"></div>
+          </div>
+        </div>
+
+        <div class="ap-deux-col">
+          <div class="ap-card">
+            <div class="ap-card-titre"><i class="fa-solid fa-clock-rotate-left"></i> Derniers inscrits</div>
+            <div id="derniersInscrits"><div class="ap-loading"><i class="fa-solid fa-circle-notch fa-spin"></i> Chargement...</div></div>
+          </div>
+          <div class="ap-card">
+            <div class="ap-card-titre"><i class="fa-solid fa-gauge"></i> Statut saison</div>
+            <div class="ap-statut-liste">
+              <div class="ap-statut-ligne">
+                <span>Soumissions</span>
+                <span class="ap-badge-statut rouge" id="statutSoumission">Fermées</span>
+              </div>
+              <div class="ap-statut-ligne">
+                <span>Classement</span>
+                <span class="ap-badge-statut rouge" id="statutClassement">Masqué</span>
+              </div>
+              <div class="ap-statut-ligne">
+                <span>Date limite</span>
+                <span class="ap-badge-statut bleu" id="statutDate">—</span>
+              </div>
+            </div>
+            <a href="#" class="ap-lien-config" data-section="config">
+              <i class="fa-solid fa-sliders"></i> Gérer la configuration →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSCRITS -->
+      <section class="ap-section" id="sec-inscrits">
+        <div class="ap-card">
+          <div class="ap-card-entete">
+            <div class="ap-card-titre"><i class="fa-solid fa-users"></i> Liste des inscrits</div>
+            <button class="ap-btn-refresh" id="btnRefreshInscrits"><i class="fa-solid fa-arrows-rotate"></i> Actualiser</button>
+          </div>
+          <div class="ap-tableau-wrap">
+            <div class="ap-loading" id="loadingInscrits"><i class="fa-solid fa-circle-notch fa-spin"></i> Chargement...</div>
+            <table class="ap-tableau" id="tableauInscrits" style="display:none;">
+              <thead><tr><th>Date</th><th>Nom</th><th>Email</th><th>Université</th><th>Niveau</th><th>Catégorie</th></tr></thead>
+              <tbody id="tbodyInscrits"></tbody>
+            </table>
+            <p class="ap-vide" id="videInscrits" style="display:none;"><i class="fa-solid fa-inbox"></i> Aucun inscrit.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOUMISSIONS -->
+      <section class="ap-section" id="sec-soumissions">
+        <div class="ap-card">
+          <div class="ap-card-entete">
+            <div class="ap-card-titre"><i class="fa-solid fa-folder-open"></i> Liste des soumissions</div>
+            <button class="ap-btn-refresh" id="btnRefreshSoumissions"><i class="fa-solid fa-arrows-rotate"></i> Actualiser</button>
+          </div>
+          <div class="ap-tableau-wrap">
+            <div class="ap-loading" id="loadingSoumissions"><i class="fa-solid fa-circle-notch fa-spin"></i> Chargement...</div>
+            <table class="ap-tableau" id="tableauSoumissions" style="display:none;">
+              <thead><tr><th>Date</th><th>Nom</th><th>Catégorie</th><th>Lien principal</th><th>Lien supp.</th><th>Commentaire</th></tr></thead>
+              <tbody id="tbodySoumissions"></tbody>
+            </table>
+            <p class="ap-vide" id="videSoumissions" style="display:none;"><i class="fa-solid fa-inbox"></i> Aucune soumission.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLASSEMENT -->
+      <section class="ap-section" id="sec-classement">
+        <div class="ap-card">
+          <div class="ap-card-titre"><i class="fa-solid fa-trophy"></i> Ajouter un résultat</div>
+          <form id="formScore" class="ap-form-score">
+            <div class="ap-form-grille">
+              <div class="ap-champ"><label>Rang</label><input type="number" id="scoreRang" placeholder="1" min="1" /></div>
+              <div class="ap-champ"><label>Nom du participant</label><input type="text" id="scoreNom" placeholder="Prénom Nom" /></div>
+              <div class="ap-champ">
+                <label>Catégorie</label>
+                <select id="scoreCategorie">
+                  <option value="">Choisir</option>
+                  <option value="dev-web">Développement Web</option>
+                  <option value="ui-ux">UI/UX Design</option>
+                  <option value="graphisme">Design Graphique</option>
+                  <option value="ia-creativite">IA & Créativité</option>
+                  <option value="constructeur-plans">Constructeur de plans</option>
+                </select>
+              </div>
+              <div class="ap-champ"><label>Score</label><input type="number" id="scoreValeur" placeholder="95" min="0" max="100" /></div>
+              <div class="ap-champ"><label>Lien du projet</label><input type="url" id="scoreLien" placeholder="https://..." /></div>
+              <div class="ap-champ"><label>Saison</label><input type="text" id="scoreSaison" placeholder="Saison 1" /></div>
+            </div>
+            <div class="ap-form-actions">
+              <button type="submit" class="ap-btn-ajouter" id="btnAjouterScore">
+                <i class="fa-solid fa-plus"></i> Ajouter au classement
+              </button>
+              <div class="ap-msg-succes" id="msgScoreSucces" style="display:none;">
+                <i class="fa-solid fa-check"></i> Résultat ajouté !
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- CONFIGURATION -->
+      <section class="ap-section" id="sec-config">
+        <div class="ap-deux-col">
+          <div class="ap-card">
+            <div class="ap-card-titre"><i class="fa-solid fa-toggle-on"></i> Accès participants</div>
+            <div class="ap-config-item">
+              <div>
+                <div class="ap-config-nom">Soumissions</div>
+                <div class="ap-config-desc">Ouvre/ferme le formulaire de soumission</div>
+              </div>
+              <label class="ap-toggle">
+                <input type="checkbox" id="toggleSoumission" />
+                <span class="ap-toggle-slider"></span>
+              </label>
+            </div>
+            <div class="ap-config-item">
+              <div>
+                <div class="ap-config-nom">Classement public</div>
+                <div class="ap-config-desc">Affiche les résultats sur la page classement</div>
+              </div>
+              <label class="ap-toggle">
+                <input type="checkbox" id="toggleClassement" />
+                <span class="ap-toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="ap-card">
+            <div class="ap-card-titre"><i class="fa-solid fa-calendar-days"></i> Date limite</div>
+            <div class="ap-champ">
+              <label>Date et heure limite de soumission</label>
+              <input type="datetime-local" id="dateLimite" />
+            </div>
+            <button class="ap-btn-sauver" id="btnSauverDate">
+              <i class="fa-solid fa-floppy-disk"></i> Sauvegarder
+            </button>
+            <p class="ap-config-note">
+              <i class="fa-solid fa-circle-info"></i>
+              Mets aussi à jour <code>DATE_LIMITE</code> dans <code>core.js</code> pour rendre permanent.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

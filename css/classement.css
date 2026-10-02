@@ -136,6 +136,15 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .nav-lien-simple:hover { color: #FF7A00; }
 [data-theme="dark"] .nav-lien-simple { color: #8892a4; }
 
+/* Cache la barre Google Translate */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame { display: none !important; }
+.skiptranslate { display: none !important; }
+#goog-gt-tt,
+.goog-te-balloon-frame { display: none !important; }
+body { top: 0 !important; }
+
 .nav-dropdown { position: relative; }
 .nav-dropdown-btn {
   display: flex;
@@ -211,7 +220,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 
 .nav-outil-btn {
-  width: 33px;
+  width: 39px;
   height: 33px;
   border-radius: 50%;
   background: transparent;
@@ -232,6 +241,16 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 .nav-outil-btn .icone-lune   { display: block; }
 [data-theme="dark"] .nav-outil-btn .icone-soleil { display: block; }
 [data-theme="dark"] .nav-outil-btn .icone-lune   { display: none; }
+
+.nav-langue {
+  width: auto;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  gap: 0.3rem;
+  font-size: 0.73rem;
+  font-weight: 700;
+  font-family: 'Manrope', sans-serif;
+}
 
 .nav-profil {
   width: 33px;
@@ -357,8 +376,8 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 
 /* PAGE CLASSEMENT */
 .page-classement {
-  min-height: 100vh;
-  padding: 7rem 1.5rem 5rem;
+  min-height: 80vh;
+  padding: 7rem 1.5rem 0rem;
   background:
     radial-gradient(ellipse 50% 35% at 50% 10%, rgba(245,158,11,0.06) 0%, transparent 65%),
     #f8fafc;
@@ -370,7 +389,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 
 .classement-conteneur {
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -391,7 +410,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 /* Message attente */
 .classement-attente {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
@@ -403,8 +422,8 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; line-heigh
 }
 
 .attente-icone {
-  width: 70px;
-  height: 70px;
+  width: 48px;
+  height: 48px;
   background: rgba(59,130,246,0.1);
   border-radius: 50%;
   display: flex;

@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO -->
-  <title>TechForgeAfro Challenge Créatif 7 Jours pour Développeurs et Designers</title>
-  <meta name="description" content="TechForgeAfro est un challenge créatif de 7 jours pour développeurs, designers et créatifs. Réalise un vrai projet, fais-toi remarquer et rejoins une communauté de talents." />
+  <title>TechForgeAfro — Challenge Créatif 7 Jours | Développeurs & Designers en Afrique</title>
+  <meta name="description" content="TechForgeAfro est le challenge créatif de 7 jours pour développeurs web, designers UI/UX et créatifs en Afrique. Réalise un vrai projet, rejoins la communauté et fais-toi remarquer." />
   <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="challenge créatif, développeur web, designer, Afrique, Bénin, TechForgeAfro, hackathon, portfolio, UI UX, programmation" />
+  <meta name="author" content="TechForgeAfro" />
+  <meta name="language" content="fr" />
   <link rel="canonical" href="https://techforgeafro.vercel.app/" />
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="TechForgeAfro Challenge Créatif 7 Jours" />
-  <meta property="og:description" content="7 jours pour prouver ton talent. Rejoins TechForgeAfro et construis un vrai projet." />
+  <meta property="og:title"       content="TechForgeAfro — Challenge Créatif 7 Jours pour Développeurs & Designers" />
+  <meta property="og:description" content="7 jours p our prouver ton talent. Rejoins TechForgeAfro et construis un vrai projet." />
   <meta property="og:url"         content="https://techforgeafro.vercel.app/" />
   <meta property="og:image"       content="https://techforgeafro.vercel.app/img/log_techforge.png" />
   <meta property="og:locale"      content="fr_FR" />
@@ -72,7 +75,7 @@
       <div class="nav-droite">
 
 
-        <div id="google_translate_element" style="display:none;"></div>
+        <div id="google_translate_element" style="display:flex;"></div>
 
         <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
           <span id="langueLabel">FR</span>
@@ -132,12 +135,19 @@
 
   <!-- HERO -->
   <section class="hero" id="accueil">
+    <!-- Fond image personnages -->
+    <div class="hero-bg-image" aria-hidden="true"></div>
+    <div class="hero-bg-overlay" aria-hidden="true"></div>
     <div class="hero-fond" aria-hidden="true">
       <div class="hero-grille"></div>
-      <div class="hero-halo"></div>
     </div>
 
     <div class="hero-contenu">
+
+      <!-- Personnage gauche -->
+      <div class="hero-personnage hero-personnage-gauche" aria-hidden="true"></div>
+
+      <!-- Centre -->
       <div class="hero-centre" data-anim="bas">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
@@ -172,6 +182,10 @@
           </a>
         </div>
       </div>
+
+      <!-- Personnage droite -->
+      <div class="hero-personnage hero-personnage-droite" aria-hidden="true"></div>
+
     </div>
 
     <div class="hero-scroll" aria-hidden="true">
@@ -189,7 +203,7 @@
         <p>Un problème réel, une solution concrète pour les créateurs.</p>
       </div>
       <div class="apropos-grille">
-        <div class="apropos-carte apropos-probleme" data-anim="gauche">
+        <div class="apropos-carte apropos-probleme" >
           <div class="apropos-carte-top">
             <div class="apropos-icone" style="background:rgba(239,68,68,0.1);color:#ef4444;">
               <i class="fa-solid fa-triangle-exclamation"></i>
@@ -203,7 +217,7 @@
             <li><span class="apropos-puce" style="background:rgba(239,68,68,0.1);color:#ef4444;"><i class="fa-solid fa-xmark"></i></span><span>La peur d'exposer son travail bloque la progression</span></li>
           </ul>
         </div>
-        <div class="apropos-carte apropos-solution" data-anim="droite">
+        <div class="apropos-carte apropos-solution" >
           <div class="apropos-carte-top">
             <div class="apropos-icone" style="background:rgba(16,185,129,0.1);color:#10b981;">
               <i class="fa-solid fa-circle-check"></i>
@@ -232,11 +246,12 @@
         <p>TechForgeAfro accueille tous les profils créatifs et techniques.</p>
       </div>
       <div class="cible-grille">
-        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-laptop-code"></i></div><h4>Développeur Web</h4><p>Tu codes des interfaces, des apps, des sites. Montre ce que tu sais construire.</p></div>
-        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-pen-ruler"></i></div><h4>UI/UX Designer</h4><p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p></div>
-        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-palette"></i></div><h4>Graphiste</h4><p>Tu maîtrises les outils visuels. Exprime ta créativité face à un vrai brief.</p></div>
-        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-robot"></i></div><h4>IA &amp; Créativité</h4><p>Tu explores l'IA générative. Utilise-la comme outil pour créer l'extraordinaire.</p></div>
-        <div class="cible-carte" data-anim="bas"><div class="cible-icone" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-graduation-cap"></i></div><h4>Étudiant créatif</h4><p>Tu apprends et tu veux progresser. TechForgeAfro est ta rampe de lancement.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-laptop-code"></i></div><h4>Développeur Web</h4><p>Tu codes des interfaces, des apps, des sites. Montre ce que tu sais construire.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-pen-ruler"></i></div><h4>UI/UX Designer</h4><p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-palette"></i></div><h4>Graphiste</h4><p>Tu maîtrises les outils visuels. Exprime ta créativité face à un vrai brief.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-robot"></i></div><h4>IA &amp; Créativité</h4><p>Tu explores l'IA générative. Utilise-la comme outil pour créer l'extraordinaire.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-graduation-cap"></i></div><h4>Étudiant créatif</h4><p>Tu apprends et tu veux progresser. TechForgeAfro est ta rampe de lancement.</p></div>
+        <div class="cible-carte"><div class="cible-icone" style="background:#fff7ed;color:#FF7A00;"><i class="fa-solid fa-compass-drafting"></i></div><h4>Constructeur de plans</h4><p>Tu conçois des plans et des maquettes techniques. Montre la précision de ton travail.</p></div>
       </div>
       <div class="cible-non" data-anim="bas">
         <div class="cible-non-titre"><i class="fa-solid fa-ban" style="color:#ef4444;"></i><h3>Ce challenge n'est pas fait pour...</h3></div>
@@ -260,10 +275,10 @@
       </div>
       <div class="timeline">
         <div class="timeline-axe"></div>
-        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">01</div><div class="timeline-ic" style="background:#fff7ed;color:#FF7A00;"><i class="fa-solid fa-user-plus"></i></div><h4>Inscription</h4><p>Tu remplis le formulaire et rejoins officiellement la saison en cours.</p></div><div class="timeline-point"></div></div>
-        <div class="timeline-etape timeline-d" data-anim="droite"><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">02</div><div class="timeline-ic" style="background:#f0fdf4;color:#10b981;"><i class="fa-brands fa-whatsapp"></i></div><h4>Groupe WhatsApp</h4><p>Tu reçois le lien du groupe officiel pour suivre les annonces.</p></div></div>
-        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">03</div><div class="timeline-ic" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-bullhorn"></i></div><h4>Réception du défi</h4><p>Le jour J, le défi est annoncé. Le chrono démarre immédiatement.</p></div><div class="timeline-point"></div></div>
-        <div class="timeline-etape timeline-d timeline-cle" data-anim="droite">
+        <div class="timeline-etape timeline-g" ><div class="timeline-carte"><div class="timeline-num">01</div><div class="timeline-ic" style="background:#fff7ed;color:#FF7A00;"><i class="fa-solid fa-user-plus"></i></div><h4>Inscription</h4><p>Tu remplis le formulaire et rejoins officiellement la saison en cours.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d" ><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">02</div><div class="timeline-ic" style="background:#f0fdf4;color:#10b981;"><i class="fa-brands fa-whatsapp"></i></div><h4>Groupe WhatsApp</h4><p>Tu reçois le lien du groupe officiel pour suivre les annonces.</p></div></div>
+        <div class="timeline-etape timeline-g" ><div class="timeline-carte"><div class="timeline-num">03</div><div class="timeline-ic" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-bullhorn"></i></div><h4>Réception du défi</h4><p>Le jour J, le défi est annoncé. Le chrono démarre immédiatement.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d timeline-cle" >
           <div class="timeline-point timeline-point-or"></div>
           <div class="timeline-carte timeline-carte-or">
             <div class="timeline-num">04</div>
@@ -273,9 +288,9 @@
             <div class="timeline-barre-wrap"><div class="timeline-barre-bg"><div class="timeline-barre-fill"></div></div><span>7 jours</span></div>
           </div>
         </div>
-        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">05</div><div class="timeline-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-paper-plane"></i></div><h4>Soumission</h4><p>Tu envoies ton projet via la page dédiée avant la date limite.</p></div><div class="timeline-point"></div></div>
-        <div class="timeline-etape timeline-d" data-anim="droite"><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">06</div><div class="timeline-ic" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-magnifying-glass"></i></div><h4>Évaluation jury</h4><p>Des jurys qualifiés évaluent chaque projet sur des critères transparents.</p></div></div>
-        <div class="timeline-etape timeline-g" data-anim="gauche"><div class="timeline-carte"><div class="timeline-num">07</div><div class="timeline-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-trophy"></i></div><h4>Publication des résultats</h4><p>Les résultats sont publiés. Les meilleurs sont mis en lumière.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-g" ><div class="timeline-carte"><div class="timeline-num">05</div><div class="timeline-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-paper-plane"></i></div><h4>Soumission</h4><p>Tu envoies ton projet via la page dédiée avant la date limite.</p></div><div class="timeline-point"></div></div>
+        <div class="timeline-etape timeline-d" ><div class="timeline-point"></div><div class="timeline-carte"><div class="timeline-num">06</div><div class="timeline-ic" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-magnifying-glass"></i></div><h4>Évaluation jury</h4><p>Des jurys qualifiés évaluent chaque projet sur des critères transparents.</p></div></div>
+        <div class="timeline-etape timeline-g" ><div class="timeline-carte"><div class="timeline-num">07</div><div class="timeline-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-trophy"></i></div><h4>Publication des résultats</h4><p>Les résultats sont publiés. Les meilleurs sont mis en lumière.</p></div><div class="timeline-point"></div></div>
       </div>
       <div class="timeline-note" data-anim="bas">
         <i class="fa-solid fa-circle-info"></i>
@@ -293,24 +308,61 @@
         <h2>Comment les projets sont évalués</h2>
         <p>Un processus rigoureux, transparent et équitable.</p>
       </div>
-      <div class="orga-grille">
-        <div class="orga-carte" data-anim="bas"><span class="orga-num">01</span><div class="orga-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-inbox"></i></div><h4>Réception</h4><p>Tous les projets soumis sont centralisés et vérifiés.</p></div>
-        <div class="orga-carte" data-anim="bas"><span class="orga-num">02</span><div class="orga-ic" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-user-tie"></i></div><h4>Évaluation jury</h4><p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p></div>
-        <div class="orga-carte" data-anim="bas"><span class="orga-num">03</span><div class="orga-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-list-check"></i></div><h4>Vérification</h4><p>Les notes sont consolidées avant toute publication officielle.</p></div>
-        <div class="orga-carte" data-anim="bas"><span class="orga-num">04</span><div class="orga-ic" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-chart-bar"></i></div><h4>Publication</h4><p>Le classement final est publié sur la plateforme et annoncé dans le groupe.</p></div>
-      </div>
+      <!-- Étapes processus horizontales modernes -->
+      <div class="orga-etapes">
 
-      <!-- Bannière illustrative -->
-      <div class="orga-banniere" data-anim="bas">
-        <div class="orga-banniere-img"></div>
-        <div class="orga-banniere-contenu">
-          <h3>Une évaluation transparente, des résultats qui comptent</h3>
-          <p>Chaque projet est évalué avec soin par des professionnels. Ton travail mérite une attention réelle pas juste un score.</p>
-          <a href="inscription.html" class="bouton-principal">
-            <i class="fa-solid fa-rocket"></i>
-            Rejoindre le challenge
-          </a>
+        <div class="orga-etape">
+          <div class="orga-etape-icone" style="background:#eff6ff;color:#3B82F6;">
+            <i class="fa-solid fa-inbox"></i>
+          </div>
+          <div class="orga-etape-ligne"></div>
+          <div class="orga-etape-num">01</div>
+          <h4>Réception</h4>
+          <p>Tous les projets soumis sont centralisés et vérifiés.</p>
         </div>
+
+        <div class="orga-connecteur" aria-hidden="true">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="orga-etape">
+          <div class="orga-etape-icone" style="background:#f5f3ff;color:#8b5cf6;">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <div class="orga-etape-ligne"></div>
+          <div class="orga-etape-num">02</div>
+          <h4>Évaluation jury</h4>
+          <p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p>
+        </div>
+
+        <div class="orga-connecteur" aria-hidden="true">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="orga-etape">
+          <div class="orga-etape-icone" style="background:#fefce8;color:#f59e0b;">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <div class="orga-etape-ligne"></div>
+          <div class="orga-etape-num">03</div>
+          <h4>Vérification</h4>
+          <p>Les notes sont consolidées avant toute publication officielle.</p>
+        </div>
+
+        <div class="orga-connecteur" aria-hidden="true">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="orga-etape">
+          <div class="orga-etape-icone" style="background:#f0fdf4;color:#10b981;">
+            <i class="fa-solid fa-chart-bar"></i>
+          </div>
+          <div class="orga-etape-ligne"></div>
+          <div class="orga-etape-num">04</div>
+          <h4>Publication</h4>
+          <p>Le classement final est publié et annoncé dans le groupe.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -325,8 +377,44 @@
         <p>Des frais simples, transparents et justifiés.</p>
       </div>
       <div class="tarifs-grille">
-        <div class="tarif-carte" data-anim="gauche">
-          <div class="tarif-header"><div class="tarif-ic" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-bolt"></i></div><div><span class="tarif-nom">Saison normale</span><div class="tarif-prix"><strong>1 000</strong><span>FCFA</span></div></div></div>
+
+        <!-- Carte 1 : Gratuit -->
+        <div class="tarif-carte">
+          <div class="tarif-header">
+            <div class="tarif-ic" style="background:#f0fdf4;color:#10b981;">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <div>
+              <span class="tarif-nom">Pour débuter</span>
+              <div class="tarif-prix">
+                <strong>Gratuit</strong>
+              </div>
+            </div>
+          </div>
+          <ul class="tarif-liste">
+            <li><i class="fa-solid fa-check"></i> Accès aux ressources de base</li>
+            <li><i class="fa-solid fa-check"></i> Rejoindre la communauté</li>
+            <li><i class="fa-solid fa-check"></i> Suivre les annonces</li>
+            <li><i class="fa-solid fa-check"></i> Observer les challenges</li>
+          </ul>
+          <a href="inscription.html" class="bouton-secondaire" style="width:100%;justify-content:center;">Commencer</a>
+        </div>
+
+        <!-- Carte 2 : Session spéciale -->
+        <div class="tarif-carte tarif-vedette">
+          <div class="tarif-badge">Le plus choisi</div>
+          <div class="tarif-header">
+            <div class="tarif-ic" style="background:#fefce8;color:#f59e0b;">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <span class="tarif-nom">Session spéciale</span>
+              <div class="tarif-prix tarif-prix-vedette">
+                <strong>1 000</strong>
+                <span>FCFA</span>
+              </div>
+            </div>
+          </div>
           <ul class="tarif-liste">
             <li><i class="fa-solid fa-check"></i> Accès complet au challenge</li>
             <li><i class="fa-solid fa-check"></i> Groupe WhatsApp officiel</li>
@@ -334,26 +422,52 @@
             <li><i class="fa-solid fa-check"></i> Résultats publiés en ligne</li>
             <li><i class="fa-solid fa-check"></i> Certificat de participation</li>
           </ul>
-          <a href="inscription.html" class="bouton-secondaire">Je m'inscris</a>
+          <a href="inscription.html" class="bouton-principal" style="width:100%;justify-content:center;">S'inscrire</a>
         </div>
-        <div class="tarif-carte tarif-vedette" data-anim="droite">
-          <div class="tarif-badge">Saison spéciale</div>
-          <div class="tarif-header"><div class="tarif-ic" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-crown"></i></div><div><span class="tarif-nom">Saison finale</span><div class="tarif-prix tarif-prix-vedette"><strong>2 000</strong><span>FCFA</span></div></div></div>
+
+        <!-- Carte 3 : Session finale -->
+        <div class="tarif-carte">
+          <div class="tarif-header">
+            <div class="tarif-ic" style="background:#fdf4ff;color:#a855f7;">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <div>
+              <span class="tarif-nom">Session finale</span>
+              <div class="tarif-prix">
+                <strong>2 000</strong>
+                <span>FCFA</span>
+              </div>
+            </div>
+          </div>
           <ul class="tarif-liste">
-            <li><i class="fa-solid fa-check"></i> Tout inclus dans la saison normale</li>
+            <li><i class="fa-solid fa-check"></i> Tout inclus dans Session spéciale</li>
             <li><i class="fa-solid fa-check"></i> Défi plus intense et ambitieux</li>
             <li><i class="fa-solid fa-check"></i> Jury de haut niveau</li>
             <li><i class="fa-solid fa-check"></i> Visibilité maximale pour les gagnants</li>
             <li><i class="fa-solid fa-check"></i> Récompenses spéciales</li>
           </ul>
-          <a href="inscription.html" class="bouton-principal">Je m'inscris</a>
+          <a href="inscription.html" class="bouton-secondaire" style="width:100%;justify-content:center;">S'inscrire</a>
         </div>
+
       </div>
       <div class="tarifs-note" data-anim="bas">
         <i class="fa-solid fa-circle-info"></i>
         <p>Ces frais couvrent l'organisation, la plateforme et la gestion des évaluations. Chaque centime sert directement à t'offrir une meilleure expérience.</p>
       </div>
     </div>
+
+    <!-- Bannière illustrative -->
+      <div class="orga-banniere" data-anim="bas">
+        <div class="orga-banniere-img"></div>
+        <div class="orga-banniere-contenu" style="text-align:center;max-width:600px;margin:0 auto;">
+          <h3>Une évaluation transparente, des résultats qui comptent</h3>
+          <p>Chaque projet est évalué avec soin par des professionnels. Ton travail mérite une attention réelle pas juste un score.</p>
+          <a href="inscription.html" class="bouton-principal">
+            <i class="fa-solid fa-rocket"></i>
+            Rejoindre le challenge
+          </a>
+        </div>
+      </div>
   </section>
 
 
@@ -467,9 +581,11 @@
       }, 'google_translate_element');
     }
     </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+      <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
-  <script src="js/accueil.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js"></script>
+    <script src="js/translate.js"></script>
 </body>
 </html>

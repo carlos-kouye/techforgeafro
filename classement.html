@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classement — TechForgeAfro</title>
+  <title>Classement — TechForgeAfro | Résultats du Challenge Créatif</title>
+  <meta name="description" content="Découvre le classement officiel du challenge créatif TechForgeAfro. Les meilleurs développeurs, designers et créatifs d'Afrique récompensés." />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="classement, résultats, TechForgeAfro, challenge créatif, développeur, designer, Afrique" />
   <link rel="icon" type="image/png" href="img/log_techforge.png" />
   <link rel="stylesheet" href="css/classement.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,6 +44,11 @@
         </div>
       </div>
       <div class="nav-droite">
+        <div id="google_translate_element" style="display:none;"></div>
+          <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+            <span id="langueLabel">FR</span>
+            <i class="fa-solid fa-globe"></i>
+          </button>
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
           <i class="fa-solid fa-sun icone-soleil"></i>
@@ -152,6 +160,7 @@
           <button class="filtre-btn" data-filtre="ui-ux">UI/UX Design</button>
           <button class="filtre-btn" data-filtre="graphisme">Design Graphique</button>
           <button class="filtre-btn" data-filtre="ia-creativite">IA &amp; Créativité</button>
+          <button class="filtre-btn" data-filtre="constructeur-plans">Constructeur de plans</button>
         </div>
 
         <!-- TABLEAU -->
@@ -203,6 +212,9 @@
     </div>
   </main>
 
-  <script src="js/accueil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/classement.js"></script>
+  <script src="js/translate.js"></script>
 </body>
 </html>

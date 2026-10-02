@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -50,6 +51,12 @@
       </div>
 
       <div class="nav-droite">
+
+        <div id="google_translate_element" style="display:none;"></div>
+          <button class="nav-outil-btn nav-langue" id="btnTraduire" title="Translate">
+            <span id="langueLabel">FR</span>
+            <i class="fa-solid fa-globe"></i>
+          </button>
         <button class="nav-outil-btn" id="toggleTheme" aria-label="Thème">
           <i class="fa-solid fa-moon icone-lune"></i>
           <i class="fa-solid fa-sun icone-soleil"></i>
@@ -93,6 +100,52 @@
   <!-- PAGE PROFIL -->
   <main class="page-profil">
     <div class="profil-conteneur">
+
+      <!-- Formulaire connexion (si pas connecté) -->
+      <div class="profil-connexion" id="profilConnexion" style="display:none;">
+        <div class="connexion-boite">
+          <div class="connexion-icone">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h2>Accède à ton profil</h2>
+          <p>Entre tes identifiants pour voir ton espace TechForgeAfro.</p>
+
+          <div class="erreur-globale" id="erreurConnexion" style="display:none;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Email ou mot de passe incorrect.</span>
+          </div>
+
+          <form class="formulaire" id="formulaireConnexion" novalidate>
+            <div class="champ">
+              <label for="connexionEmail">
+                <i class="fa-solid fa-envelope"></i>
+                Adresse email
+              </label>
+              <input type="email" id="connexionEmail" placeholder="ton@email.com" autocomplete="email" />
+            </div>
+            <div class="champ">
+              <label for="connexionMdp">
+                <i class="fa-solid fa-lock"></i>
+                Mot de passe
+              </label>
+              <div class="champ-input-wrap">
+                <input type="password" id="connexionMdp" placeholder="Ton mot de passe" autocomplete="current-password" />
+                <button type="button" class="champ-toggle-mdp" id="toggleMdpConnexion" aria-label="Voir mot de passe">
+                  <i class="fa-solid fa-eye-slash"></i>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="bouton-formulaire" id="btnConnexion">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span id="btnConnexionTexte">Se connecter</span>
+            </button>
+            <p class="formulaire-note">
+              Pas encore inscrit ?
+              <a href="inscription.html" style="color:#FF7A00;font-weight:700;">S'inscrire</a>
+            </p>
+          </form>
+        </div>
+      </div>
 
       <!-- Message si non connecté -->
       <div class="profil-non-connecte" id="profilNonConnecte" style="display:none;">
@@ -261,6 +314,10 @@
     </div>
   </main>
 
-  <script src="js/accueil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profil.js"></script>
+  <script src="js/translate.js"></script>
 </body>
 </html>
