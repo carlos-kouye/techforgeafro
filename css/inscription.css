@@ -545,9 +545,9 @@ body { top: 0 !important; }
 
 /* ── Bouton formulaire ── */
 .bouton-formulaire {
-  width: 100%;
+  min-width: 80%;
   padding: 0.95rem;
-  background: linear-gradient(135deg, #FF7A00, #3B82F6);
+  background: linear-gradient(135deg, #FF7A00, #f69c3b);
   color: #fff;
   border: none;
   border-radius: 13px;
