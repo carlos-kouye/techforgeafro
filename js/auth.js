@@ -11,12 +11,12 @@ var EMAILJS_TEMPLATE_NOTIF    = "template_dycv3av"; /* Notification inscription 
 var EMAILJS_TEMPLATE_BIENVENUE = "template_kj39xwr"; /* Bienvenue → pour le participant */
 var LIEN_WHATSAPP = "https://chat.whatsapp.com/TONLIENICI"; /* Remplace par ton vrai lien */
 
-document.addEventListener("DOMContentLoaded", function () {
+/* ── Init EmailJS immédiatement ── */
+if (window.emailjs) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
-  /* ── Init EmailJS ── */
-  if (window.emailjs) {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }
+document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Client Supabase ── */
   var supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);

@@ -591,7 +591,18 @@ iframe.goog-te-banner-frame {
 .hero-titre {
   color: #000000c7;
   margin-bottom: 1.2rem;
-  line-height: 1.22;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+/* Chaque ligne du titre bien propre */
+.hero-ligne {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 [data-theme="dark"] .hero-titre { color: #f1f5f9; }
 
@@ -1747,7 +1758,7 @@ iframe.goog-te-banner-frame { display: none !important; }
   inset: 0;
   z-index: 1;
   /* Mode clair : voile blanc léger pour que le texte reste lisible */
-  background: rgba(255, 253, 252, 0.638);
+  background: rgba(255, 253, 252, 0.748);
 }
 
 /* Mode sombre : voile sombre léger */

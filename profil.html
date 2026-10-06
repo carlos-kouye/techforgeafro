@@ -154,10 +154,18 @@
         </div>
         <h2>Tu n'es pas encore inscrit</h2>
         <p>Inscris-toi au challenge pour accéder à ton espace personnel et suivre ta participation.</p>
-        <a href="inscription.html" class="bouton-inscrire">
-          <i class="fa-solid fa-rocket"></i>
-          S'inscrire au challenge
-        </a>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+          <a href="inscription.html" class="bouton-inscrire">
+            <i class="fa-solid fa-rocket"></i>
+            S'inscrire au challenge
+          </a>
+          <a href="profil.html#connexion" class="bouton-inscrire"
+             style="background:transparent;border:2px solid #FF7A00;color:#FF7A00;"
+             onclick="document.getElementById('profilNonConnecte').style.display='none';document.getElementById('profilConnexion').style.display='flex';return false;">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Se connecter
+          </a>
+        </div>
       </div>
 
       <!-- Contenu profil (visible si inscrit) -->

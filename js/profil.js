@@ -1,7 +1,6 @@
 /* ================================================================
    TechForgeAfro — profil.js
    Gère la page profil — lecture données Supabase
-   Chargé sur : profil.html uniquement
 ================================================================ */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -11,10 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var profilNonConnecte = document.getElementById("profilNonConnecte");
   var profilConnexion   = document.getElementById("profilConnexion");
 
-  /* ── Vérifie si l'utilisateur est connecté ── */
+  /* ── Vérifie session au chargement ── */
   supabase.auth.getSession().then(function (res) {
     var session = res.data.session;
-
     if (!session) {
       /* Pas connecté — affiche formulaire connexion */
       if (profilNonConnecte) profilNonConnecte.style.display = "none";
@@ -22,30 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
       if (profilConnexion)   profilConnexion.style.display   = "flex";
       return;
     }
-
-    /* Connecté — charge les données */
     chargerProfil(session.user.id);
   });
 
-
+  /* ── Charge les données depuis Supabase ── */
   function chargerProfil(userId) {
-    /* Affiche d'abord les données locales pour rapidité */
     afficherDonneesLocales();
 
-    /* Puis charge depuis Supabase pour avoir les vraies données à jour */
     supabase.from("inscriptions")
       .select("*")
       .eq("user_id", userId)
       .single()
       .then(function (res) {
-        if (res.error || !res.data) {
-          console.error("Erreur chargement profil:", res.error);
-          return;
-        }
-
+        if (res.error || !res.data) return;
         var data = res.data;
 
-        /* Met à jour localStorage */
         localStorage.setItem("techforge-connecte",  "oui");
         localStorage.setItem("techforge-nom",        data.nom);
         localStorage.setItem("techforge-email",      data.email);
@@ -53,10 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("techforge-niveau",     data.niveau);
         localStorage.setItem("techforge-categorie",  data.categorie);
 
-        /* Affiche les données */
         afficherDonnees(data);
 
-        /* Vérifie si une soumission existe */
         return supabase.from("soumissions")
           .select("id, created_at")
           .eq("user_id", userId)
@@ -68,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("techforge-soumis", "oui");
           var statutSou = document.getElementById("statutSoumission");
           if (statutSou) statutSou.textContent = "Projet soumis ✓";
-          /* Active l'étape soumission dans la timeline */
           var etapeSou = document.getElementById("etapeSoumission");
           if (etapeSou) {
             var point = etapeSou.querySelector(".profil-etape-point");
@@ -82,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-
   function afficherDonneesLocales() {
     var data = {
       nom:        localStorage.getItem("techforge-nom")        || "—",
@@ -94,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
     afficherDonnees(data);
   }
 
-
   function afficherDonnees(data) {
     if (!profilContenu) return;
 
@@ -103,10 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
     profilContenu.style.display = "block";
 
     var labelsCategorie = {
-      "dev-web"       : "Développement Web",
-      "ui-ux"         : "UI/UX Design",
-      "graphisme"     : "Design Graphique",
-      "ia-creativite" : "IA & Créativité"
+      "dev-web"            : "Développement Web",
+      "ui-ux"              : "UI/UX Design",
+      "graphisme"          : "Design Graphique",
+      "ia-creativite"      : "IA & Créativité",
+      "constructeur-plans" : "Constructeur de plans"
     };
     var categorieLabel = labelsCategorie[data.categorie] || data.categorie;
 
@@ -123,20 +108,17 @@ document.addEventListener("DOMContentLoaded", function () {
     remplir("profilUniversiteInfo", data.universite);
     remplir("profilCategorieInfo",  categorieLabel);
 
-    /* Avatar — première lettre */
     var avatar = document.getElementById("profilAvatar");
     if (avatar && data.nom) {
       avatar.textContent = data.nom.charAt(0).toUpperCase();
     }
 
-    /* Statut saison */
     var statutEl = document.getElementById("statutSaison");
     if (statutEl && SOUMISSION_OUVERTE) {
       statutEl.innerHTML = '<i class="fa-solid fa-bolt"></i> Challenge en cours';
       statutEl.style.cssText = "background:rgba(16,185,129,0.1);color:#10b981;border-color:rgba(16,185,129,0.22);";
     }
 
-    /* Bouton action */
     var actionTexte = document.getElementById("profilActionTexte");
     var actionBtn   = document.getElementById("profilBtnAction");
     if (actionTexte && actionBtn) {
@@ -150,15 +132,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
-  /* ── Déconnexion ── */
+  /* ── Déconnexion — recharge la page pour afficher connexion ── */
   var btnDeconnexion = document.getElementById("btnDeconnexion");
   if (btnDeconnexion) {
     btnDeconnexion.addEventListener("click", function () {
       if (confirm("Veux-tu vraiment te déconnecter ?")) {
         supabase.auth.signOut().then(function () {
-          localStorage.clear();
-          window.location.href = "index.html";
+          localStorage.removeItem("techforge-connecte");
+          localStorage.removeItem("techforge-nom");
+          localStorage.removeItem("techforge-email");
+          localStorage.removeItem("techforge-universite");
+          localStorage.removeItem("techforge-niveau");
+          localStorage.removeItem("techforge-categorie");
+          localStorage.removeItem("techforge-soumis");
+          /* Recharge la page → affiche formulaire connexion */
+          window.location.reload();
         });
       }
     });
