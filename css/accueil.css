@@ -1917,3 +1917,51 @@ iframe.goog-te-banner-frame { display: none !important; }
 @media (max-width: 480px) {
   .cible-grille { grid-template-columns: 1fr !important; }
 }
+/* ── Hero titre mobile — chaque phrase sur sa ligne ── */
+@media (max-width: 768px) {
+  .hero-titre {
+    font-size: clamp(1.5rem, 5.5vw, 1.9rem);
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  .hero-ligne {
+    display: block;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .hero-encadre {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.2rem 0;
+  }
+  .hero-encadre-texte {
+    display: block;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    white-space: nowrap;
+  }
+  .coin { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-titre {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+  .hero-ligne {
+    white-space: normal;
+    line-height: 1.25;
+  }
+  .hero-encadre-texte {
+    font-size: clamp(1.2rem, 4.8vw, 1.45rem);
+    white-space: normal;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-titre { font-size: 1.2rem; }
+  .hero-encadre-texte { font-size: 1.15rem; }
+}

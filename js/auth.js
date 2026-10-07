@@ -11,11 +11,6 @@ var EMAILJS_TEMPLATE_NOTIF    = "template_dycv3av"; /* Notification inscription 
 var EMAILJS_TEMPLATE_BIENVENUE = "template_kj39xwr"; /* Bienvenue → pour le participant */
 var LIEN_WHATSAPP = "https://chat.whatsapp.com/TONLIENICI"; /* Remplace par ton vrai lien */
 
-/* ── Init EmailJS immédiatement ── */
-if (window.emailjs) {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-}
-
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ── Client Supabase ── */
@@ -196,29 +191,44 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("techforge-niveau",     nivVal);
         localStorage.setItem("techforge-categorie",  catVal);
 
-        /* Étape 4 — EmailJS : notification pour toi */
-        if (window.emailjs) {
+        /* Étape 4 — EmailJS : envoyer les deux emails */
+        function envoyerEmails() {
+          /* Notification admin */
           emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_NOTIF, {
+            to_email:   "kouyecarlos@gmail.com",
             nom:        nomVal,
             email:      emailVal,
             universite: univVal,
             niveau:     nivVal,
             categorie:  catVal,
             date:       dateVal,
+          }).then(function () {
+            console.log("Notif admin envoyée");
           }).catch(function (err) {
-            console.warn("EmailJS notif admin:", err);
+            console.error("EmailJS notif admin erreur:", JSON.stringify(err));
           });
 
-          /* Étape 5 — EmailJS : email bienvenue pour le participant */
+          /* Email bienvenue participant */
           emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BIENVENUE, {
+            to_email:      emailVal,
             nom:           nomVal,
             email:         emailVal,
             universite:    univVal,
             categorie:     catVal,
             lien_whatsapp: LIEN_WHATSAPP,
+          }).then(function () {
+            console.log("Bienvenue participant envoyé");
           }).catch(function (err) {
-            console.warn("EmailJS bienvenue:", err);
+            console.error("EmailJS bienvenue erreur:", JSON.stringify(err));
           });
+        }
+
+        /* Appeler EmailJS — avec retry si pas encore initialisé */
+        if (typeof emailjs !== "undefined") {
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+          envoyerEmails();
+        } else {
+          console.warn("EmailJS non chargé");
         }
 
         /* Succès */
