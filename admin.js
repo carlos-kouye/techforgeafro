@@ -3,7 +3,7 @@
    Interface admin avec sidebar navigation
 ================================================================ */
 
-var ADMIN_EMAIL = "contact.techforge@gmail.com";
+var ADMIN_EMAIL = "kouyecarlos@gmail.com";
 
 document.addEventListener("DOMContentLoaded", function () {
 
