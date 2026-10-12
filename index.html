@@ -151,7 +151,7 @@
       <div class="hero-centre" data-anim="bas">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          Challenge 7 Jours · Saison en cours
+          Challenge TachForgeAfro · Saison en cours
         </div>
 
         <h1 class="hero-titre">
@@ -245,20 +245,53 @@
         <h2>Ce challenge est fait pour toi si…</h2>
         <p>TechForgeAfro accueille tous les profils créatifs et techniques.</p>
       </div>
-      <div class="cible-grille">
-        <div class="cible-carte"><div class="cible-icone" style="background:#eff6ff;color:#3B82F6;"><i class="fa-solid fa-laptop-code"></i></div><h4>Développeur Web</h4><p>Tu codes des interfaces, des apps, des sites. Montre ce que tu sais construire.</p></div>
-        <div class="cible-carte"><div class="cible-icone" style="background:#f5f3ff;color:#8b5cf6;"><i class="fa-solid fa-pen-ruler"></i></div><h4>UI/UX Designer</h4><p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p></div>
-        <div class="cible-carte"><div class="cible-icone" style="background:#fdf2f8;color:#ec4899;"><i class="fa-solid fa-palette"></i></div><h4>Graphiste</h4><p>Tu maîtrises les outils visuels. Exprime ta créativité face à un vrai brief.</p></div>
-        <div class="cible-carte"><div class="cible-icone" style="background:#fefce8;color:#f59e0b;"><i class="fa-solid fa-robot"></i></div><h4>IA &amp; Créativité</h4><p>Tu explores l'IA générative. Utilise-la comme outil pour créer l'extraordinaire.</p></div>
-        <div class="cible-carte"><div class="cible-icone" style="background:#f0fdf4;color:#10b981;"><i class="fa-solid fa-graduation-cap"></i></div><h4>Étudiant créatif</h4><p>Tu apprends et tu veux progresser. TechForgeAfro est ta rampe de lancement.</p></div>
-        <div class="cible-carte"><div class="cible-icone" style="background:#fff7ed;color:#FF7A00;"><i class="fa-solid fa-compass-drafting"></i></div><h4>Constructeur de plans</h4><p>Tu conçois des plans et des maquettes techniques. Montre la précision de ton travail.</p></div>
+      <!-- 6 profils — visibles + zoom au survol -->
+      <div class="cible-grille-arc">
+
+        <div class="cible-profil" style="--c:#3B82F6;--bg:#eff6ff;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>Développeur Web</h4>
+          <p>Tu codes des interfaces, des apps, des sites. Montre ce que tu sais construire.</p>
+        </div>
+
+        <div class="cible-profil" style="--c:#8b5cf6;--bg:#f5f3ff;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-pen-ruler"></i></div>
+          <h4>UI/UX Designer</h4>
+          <p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p>
+        </div>
+
+        <div class="cible-profil" style="--c:#ec4899;--bg:#fdf2f8;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-palette"></i></div>
+          <h4>Graphiste</h4>
+          <p>Tu maîtrises les outils visuels. Exprime ta créativité face à un vrai brief.</p>
+        </div>
+
+        <div class="cible-profil" style="--c:#f59e0b;--bg:#fefce8;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-robot"></i></div>
+          <h4>IA &amp; Créativité</h4>
+          <p>Tu explores l'IA générative. Utilise-la comme outil pour créer l'extraordinaire.</p>
+        </div>
+
+        <div class="cible-profil" style="--c:#10b981;--bg:#f0fdf4;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4>Étudiant créatif</h4>
+          <p>Tu apprends et tu veux progresser. TechForgeAfro est ta rampe de lancement.</p>
+        </div>
+
+        <div class="cible-profil" style="--c:#FF7A00;--bg:#fff7ed;">
+          <div class="cible-profil-icone"><i class="fa-solid fa-compass-drafting"></i></div>
+          <h4>Constructeur de plans</h4>
+          <p>Tu conçois des plans et maquettes techniques. Montre la précision de ton travail.</p>
+        </div>
+
       </div>
-      <div class="cible-non" data-anim="bas">
-        <div class="cible-non-titre"><i class="fa-solid fa-ban" style="color:#ef4444;"></i><h3>Ce challenge n'est pas fait pour...</h3></div>
-        <div class="cible-non-grille">
-          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui ne veulent pas apprendre ni progresser</p></div>
-          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui ne prennent pas les engagements au sérieux</p></div>
-          <div class="cible-non-carte"><i class="fa-solid fa-xmark" style="color:#ef4444;"></i><p>Ceux qui abandonnent au premier obstacle</p></div>
+      <!-- Ce challenge n'est pas pour... -->
+      <div class="cible-exclus">
+        <p class="cible-exclus-titre"><i class="fa-solid fa-ban"></i> Pas fait pour toi si...</p>
+        <div class="cible-exclus-liste">
+          <span><i class="fa-solid fa-xmark"></i> Tu ne veux pas progresser</span>
+          <span><i class="fa-solid fa-xmark"></i> Tu ne prends pas tes engagements au sérieux</span>
+          <span><i class="fa-solid fa-xmark"></i> Tu abandonnes au premier obstacle</span>
         </div>
       </div>
     </div>
@@ -308,61 +341,58 @@
         <h2>Comment les projets sont évalués</h2>
         <p>Un processus rigoureux, transparent et équitable.</p>
       </div>
-      <!-- Étapes processus horizontales modernes -->
-      <div class="orga-etapes">
+      <!-- Processus évaluation — style moderne -->
+      <div class="orga-process">
 
-        <div class="orga-etape">
-          <div class="orga-etape-icone" style="background:#eff6ff;color:#3B82F6;">
-            <i class="fa-solid fa-inbox"></i>
+        <div class="orga-process-ligne"></div>
+
+        <div class="orga-process-etapes">
+
+          <div class="orga-process-etape">
+            <div class="orga-process-point" style="--c:#3B82F6;">
+              <i class="fa-solid fa-inbox"></i>
+            </div>
+            <div class="orga-process-contenu">
+              <span class="orga-process-num">01</span>
+              <h4>Réception</h4>
+              <p>Tous les projets soumis sont centralisés et vérifiés avant traitement.</p>
+            </div>
           </div>
-          <div class="orga-etape-ligne"></div>
-          <div class="orga-etape-num">01</div>
-          <h4>Réception</h4>
-          <p>Tous les projets soumis sont centralisés et vérifiés.</p>
-        </div>
 
-        <div class="orga-connecteur" aria-hidden="true">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="orga-etape">
-          <div class="orga-etape-icone" style="background:#f5f3ff;color:#8b5cf6;">
-            <i class="fa-solid fa-user-tie"></i>
+          <div class="orga-process-etape">
+            <div class="orga-process-point" style="--c:#8b5cf6;">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="orga-process-contenu">
+              <span class="orga-process-num">02</span>
+              <h4>Évaluation jury</h4>
+              <p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p>
+            </div>
           </div>
-          <div class="orga-etape-ligne"></div>
-          <div class="orga-etape-num">02</div>
-          <h4>Évaluation jury</h4>
-          <p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p>
-        </div>
 
-        <div class="orga-connecteur" aria-hidden="true">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="orga-etape">
-          <div class="orga-etape-icone" style="background:#fefce8;color:#f59e0b;">
-            <i class="fa-solid fa-list-check"></i>
+          <div class="orga-process-etape">
+            <div class="orga-process-point" style="--c:#f59e0b;">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="orga-process-contenu">
+              <span class="orga-process-num">03</span>
+              <h4>Vérification</h4>
+              <p>Les notes sont consolidées et vérifiées avant toute publication officielle.</p>
+            </div>
           </div>
-          <div class="orga-etape-ligne"></div>
-          <div class="orga-etape-num">03</div>
-          <h4>Vérification</h4>
-          <p>Les notes sont consolidées avant toute publication officielle.</p>
-        </div>
 
-        <div class="orga-connecteur" aria-hidden="true">
-          <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="orga-etape">
-          <div class="orga-etape-icone" style="background:#f0fdf4;color:#10b981;">
-            <i class="fa-solid fa-chart-bar"></i>
+          <div class="orga-process-etape">
+            <div class="orga-process-point" style="--c:#10b981;">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="orga-process-contenu">
+              <span class="orga-process-num">04</span>
+              <h4>Publication</h4>
+              <p>Le classement final est publié sur la plateforme et annoncé dans le groupe.</p>
+            </div>
           </div>
-          <div class="orga-etape-ligne"></div>
-          <div class="orga-etape-num">04</div>
-          <h4>Publication</h4>
-          <p>Le classement final est publié et annoncé dans le groupe.</p>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>

@@ -314,4 +314,74 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.top = "0";
   }, 800);
 
+
+
+  /* ================================================================
+     CARROUSEL CIBLE — effet profondeur 3D
+  ================================================================ */
+  var carousel = document.getElementById("cibleCarousel");
+  if (carousel) {
+    var items  = Array.from(carousel.querySelectorAll(".cible-item"));
+    var dots   = Array.from(document.querySelectorAll(".cible-dot"));
+    var total  = items.length;
+    var actuel = 2; /* Commence au milieu */
+
+    function appliquerClasses() {
+      items.forEach(function (item, i) {
+        item.classList.remove("actif", "adjacent", "lateral-proche", "lateral-loin");
+        var diff = i - actuel;
+        /* Gérer la boucle circulaire */
+        if (diff > total / 2)  diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        if (diff === 0)          item.classList.add("actif");
+        else if (Math.abs(diff) === 1) item.classList.add("adjacent");
+        else if (Math.abs(diff) === 2) item.classList.add("lateral-proche");
+        else                     item.classList.add("lateral-loin");
+      });
+
+      /* Dots */
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("actif", i === actuel);
+      });
+    }
+
+    function allerA(index) {
+      actuel = (index + total) % total;
+      appliquerClasses();
+    }
+
+    /* Clic sur item — devient actif */
+    items.forEach(function (item, i) {
+      item.addEventListener("click", function () {
+        if (i === actuel) return; /* Déjà actif */
+        allerA(i);
+      });
+    });
+
+    /* Boutons prev/next */
+    var btnPrev = document.getElementById("ciblePrev");
+    var btnNext = document.getElementById("cibleNext");
+    if (btnPrev) btnPrev.addEventListener("click", function () { allerA(actuel - 1); });
+    if (btnNext) btnNext.addEventListener("click", function () { allerA(actuel + 1); });
+
+    /* Dots */
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { allerA(i); });
+    });
+
+    /* Swipe mobile */
+    var startX = 0;
+    carousel.addEventListener("touchstart", function (e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener("touchend", function (e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) allerA(diff > 0 ? actuel + 1 : actuel - 1);
+    });
+
+    /* Init */
+    appliquerClasses();
+  }
+
 }); // Fin DOMContentLoaded
