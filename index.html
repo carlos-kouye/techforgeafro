@@ -255,9 +255,9 @@
         </div>
 
         <div class="cible-profil" style="--c:#8b5cf6;--bg:#f5f3ff;">
-          <div class="cible-profil-icone"><i class="fa-solid fa-pen-ruler"></i></div>
-          <h4>UI/UX Designer</h4>
-          <p>Tu conçois des expériences. Prouve que tes maquettes transforment des idées en produits.</p>
+          <div class="cible-profil-icone"><i class="fa-solid fa-pencil"></i></div>
+          <h4>Copywriter</h4>
+          <p>Tu maîtrises les mots. Crée des contenus qui captivent, convainquent et convertissent.</p>
         </div>
 
         <div class="cible-profil" style="--c:#ec4899;--bg:#fdf2f8;">
@@ -341,54 +341,86 @@
         <h2>Comment les projets sont évalués</h2>
         <p>Un processus rigoureux, transparent et équitable.</p>
       </div>
-      <!-- Processus évaluation — style moderne -->
-      <div class="orga-process">
+      <!-- Organisation — layout gauche/droite avec accordéon -->
+      <div class="orga-layout">
 
-        <div class="orga-process-ligne"></div>
-
-        <div class="orga-process-etapes">
-
-          <div class="orga-process-etape">
-            <div class="orga-process-point" style="--c:#3B82F6;">
-              <i class="fa-solid fa-inbox"></i>
+        <!-- Gauche : titre section -->
+        <div class="orga-layout-gauche">
+          <span class="badge-section">Processus</span>
+          <h3>Comment les projets sont évalués</h3>
+          <p>Un processus rigoureux, transparent et équitable pour récompenser les meilleurs talents.</p>
+          <div class="orga-layout-stat">
+            <div class="orga-stat-item">
+              <strong>4</strong>
+              <span>étapes clés</span>
             </div>
-            <div class="orga-process-contenu">
-              <span class="orga-process-num">01</span>
-              <h4>Réception</h4>
-              <p>Tous les projets soumis sont centralisés et vérifiés avant traitement.</p>
+            <div class="orga-stat-item">
+              <strong>7j</strong>
+              <span>de challenge</span>
+            </div>
+            <div class="orga-stat-item">
+              <strong>100%</strong>
+              <span>transparent</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Droite : étapes accordéon -->
+        <div class="orga-layout-droite">
+
+          <div class="orga-accord" data-index="0">
+            <div class="orga-accord-header">
+              <span class="orga-accord-num">01</span>
+              <div class="orga-accord-icone" style="--c:#3B82F6;--bg:#eff6ff;">
+                <i class="fa-solid fa-inbox"></i>
+              </div>
+              <h4>Réception des projets</h4>
+              <i class="fa-solid fa-chevron-down orga-accord-chevron"></i>
+            </div>
+            <div class="orga-accord-body">
+              <p>Tous les projets soumis avant la date limite sont centralisés sur la plateforme. Chaque soumission est vérifiée pour s'assurer qu'elle respecte les critères de base.</p>
             </div>
           </div>
 
-          <div class="orga-process-etape">
-            <div class="orga-process-point" style="--c:#8b5cf6;">
-              <i class="fa-solid fa-user-tie"></i>
+          <div class="orga-accord" data-index="1">
+            <div class="orga-accord-header">
+              <span class="orga-accord-num">02</span>
+              <div class="orga-accord-icone" style="--c:#8b5cf6;--bg:#f5f3ff;">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <h4>Évaluation par le jury</h4>
+              <i class="fa-solid fa-chevron-down orga-accord-chevron"></i>
             </div>
-            <div class="orga-process-contenu">
-              <span class="orga-process-num">02</span>
-              <h4>Évaluation jury</h4>
-              <p>Chaque projet est noté sur la qualité, la créativité et le respect du brief.</p>
-            </div>
-          </div>
-
-          <div class="orga-process-etape">
-            <div class="orga-process-point" style="--c:#f59e0b;">
-              <i class="fa-solid fa-list-check"></i>
-            </div>
-            <div class="orga-process-contenu">
-              <span class="orga-process-num">03</span>
-              <h4>Vérification</h4>
-              <p>Les notes sont consolidées et vérifiées avant toute publication officielle.</p>
+            <div class="orga-accord-body">
+              <p>Chaque projet est évalué sur la qualité technique, la créativité, le respect du brief et l'originalité. Les jurys sont des professionnels du domaine.</p>
             </div>
           </div>
 
-          <div class="orga-process-etape">
-            <div class="orga-process-point" style="--c:#10b981;">
-              <i class="fa-solid fa-trophy"></i>
+          <div class="orga-accord" data-index="2">
+            <div class="orga-accord-header">
+              <span class="orga-accord-num">03</span>
+              <div class="orga-accord-icone" style="--c:#f59e0b;--bg:#fefce8;">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+              <h4>Vérification des notes</h4>
+              <i class="fa-solid fa-chevron-down orga-accord-chevron"></i>
             </div>
-            <div class="orga-process-contenu">
-              <span class="orga-process-num">04</span>
-              <h4>Publication</h4>
-              <p>Le classement final est publié sur la plateforme et annoncé dans le groupe.</p>
+            <div class="orga-accord-body">
+              <p>Les notes de tous les jurys sont consolidées et vérifiées pour garantir l'équité. Aucun résultat n'est publié sans validation finale.</p>
+            </div>
+          </div>
+
+          <div class="orga-accord" data-index="3">
+            <div class="orga-accord-header">
+              <span class="orga-accord-num">04</span>
+              <div class="orga-accord-icone" style="--c:#10b981;--bg:#f0fdf4;">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <h4>Publication des résultats</h4>
+              <i class="fa-solid fa-chevron-down orga-accord-chevron"></i>
+            </div>
+            <div class="orga-accord-body">
+              <p>Le classement final est publié sur la plateforme et annoncé dans le groupe WhatsApp. Les gagnants sont mis en avant et leurs projets partagés à la communauté.</p>
             </div>
           </div>
 

@@ -11,18 +11,9 @@ var SUPABASE_URL = "https://gqsbluqfjxfpmszreeqt.supabase.co";
 var SUPABASE_KEY = "sb_publishable_8C4isFsxWjKJ9dj7xBEpwA_zVwMCAcE";
 
 /* ── Configuration saison ── */
-/* Valeurs par défaut — écrasées si l'admin a sauvegardé dans localStorage */
-var SOUMISSION_OUVERTE    = localStorage.getItem("tf-soumission-ouverte") !== null
-  ? localStorage.getItem("tf-soumission-ouverte") === "1"
-  : true;
-
-var CLASSEMENT_DISPONIBLE = localStorage.getItem("tf-classement-disponible") !== null
-  ? localStorage.getItem("tf-classement-disponible") === "1"
-  : true;
-
-var DATE_LIMITE = localStorage.getItem("tf-date-limite")
-  ? new Date(localStorage.getItem("tf-date-limite"))
-  : new Date("2026-12-31T23:59:59");
+var SOUMISSION_OUVERTE    = true;
+var CLASSEMENT_DISPONIBLE = true;
+var DATE_LIMITE           = new Date("2026-12-31T23:59:59");
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -316,72 +307,85 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  /* ================================================================
-     CARROUSEL CIBLE — effet profondeur 3D
-  ================================================================ */
-  var carousel = document.getElementById("cibleCarousel");
-  if (carousel) {
-    var items  = Array.from(carousel.querySelectorAll(".cible-item"));
-    var dots   = Array.from(document.querySelectorAll(".cible-dot"));
-    var total  = items.length;
-    var actuel = 2; /* Commence au milieu */
+  /* ── ACCORDÉON ORGANISATION ──
+     Souris : le survol ouvre, quitter le survol referme.
+     Clic / toucher : maintient ouvert jusqu'à un nouveau clic.
+     Section hors de l'écran : tout se referme. ── */
+  var accords = document.querySelectorAll(".orga-accord");
+  if (accords.length > 0) {
+    var epingle = null; /* accordéon maintenu ouvert par un clic */
 
-    function appliquerClasses() {
-      items.forEach(function (item, i) {
-        item.classList.remove("actif", "adjacent", "lateral-proche", "lateral-loin");
-        var diff = i - actuel;
-        /* Gérer la boucle circulaire */
-        if (diff > total / 2)  diff -= total;
-        if (diff < -total / 2) diff += total;
-
-        if (diff === 0)          item.classList.add("actif");
-        else if (Math.abs(diff) === 1) item.classList.add("adjacent");
-        else if (Math.abs(diff) === 2) item.classList.add("lateral-proche");
-        else                     item.classList.add("lateral-loin");
-      });
-
-      /* Dots */
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle("actif", i === actuel);
-      });
+    function fermerAccord(a) {
+      a.classList.remove("ouvert");
+      var h = a.querySelector(".orga-accord-header");
+      if (h) h.setAttribute("aria-expanded", "false");
+    }
+    function ouvrirAccord(a) {
+      accords.forEach(function (x) { if (x !== a) fermerAccord(x); });
+      a.classList.add("ouvert");
+      var h = a.querySelector(".orga-accord-header");
+      if (h) h.setAttribute("aria-expanded", "true");
+    }
+    function toutFermer() {
+      epingle = null;
+      accords.forEach(fermerAccord);
     }
 
-    function allerA(index) {
-      actuel = (index + total) % total;
-      appliquerClasses();
-    }
+    accords.forEach(function (accord) {
+      var header = accord.querySelector(".orga-accord-header");
+      if (header) {
+        header.setAttribute("tabindex", "0");
+        header.setAttribute("role", "button");
+        header.setAttribute("aria-expanded", "false");
+      }
 
-    /* Clic sur item — devient actif */
-    items.forEach(function (item, i) {
-      item.addEventListener("click", function () {
-        if (i === actuel) return; /* Déjà actif */
-        allerA(i);
+      function basculer() {
+        if (epingle === accord) { epingle = null; fermerAccord(accord); }
+        else { epingle = accord; ouvrirAccord(accord); }
+      }
+
+      /* Survol (souris uniquement) */
+      accord.addEventListener("pointermove", function (e) {
+        if (e.pointerType !== "mouse") return;
+        if (!accord.classList.contains("ouvert")) {
+          epingle = null;
+          ouvrirAccord(accord);
+        }
       });
+      accord.addEventListener("pointerleave", function (e) {
+        if (e.pointerType !== "mouse") return;
+        if (epingle !== accord) fermerAccord(accord);
+      });
+
+      /* Clic / toucher / clavier */
+      accord.addEventListener("click", basculer);
+      if (header) {
+        header.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); basculer(); }
+        });
+      }
     });
 
-    /* Boutons prev/next */
-    var btnPrev = document.getElementById("ciblePrev");
-    var btnNext = document.getElementById("cibleNext");
-    if (btnPrev) btnPrev.addEventListener("click", function () { allerA(actuel - 1); });
-    if (btnNext) btnNext.addEventListener("click", function () { allerA(actuel + 1); });
-
-    /* Dots */
-    dots.forEach(function (dot, i) {
-      dot.addEventListener("click", function () { allerA(i); });
-    });
-
-    /* Swipe mobile */
-    var startX = 0;
-    carousel.addEventListener("touchstart", function (e) {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    carousel.addEventListener("touchend", function (e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) allerA(diff > 0 ? actuel + 1 : actuel - 1);
-    });
-
-    /* Init */
-    appliquerClasses();
+    /* Tout fermer quand la liste sort de l'écran */
+    var zoneAccord = document.querySelector(".orga-layout-droite");
+    if (zoneAccord && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entrees) {
+        if (!entrees[0].isIntersecting) toutFermer();
+      }, { rootMargin: "-80px 0px -80px 0px" }).observe(zoneAccord);
+    }
   }
+
+  /* ── EFFET NÉON CURSEUR sur cartes cible ── */
+  document.querySelectorAll(".cible-profil").forEach(function (card) {
+    card.addEventListener("mousemove", function (e) {
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty("--nx", (e.clientX - rect.left) + "px");
+      card.style.setProperty("--ny", (e.clientY - rect.top) + "px");
+    });
+    card.addEventListener("mouseleave", function () {
+      card.style.removeProperty("--nx");
+      card.style.removeProperty("--ny");
+    });
+  });
 
 }); // Fin DOMContentLoaded
