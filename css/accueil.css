@@ -1926,17 +1926,17 @@ iframe.goog-te-banner-frame { display: none !important; }
   .hero-badge{
     margin-top: -80%;
     margin-bottom: 15%;
-    padding: 3.5% 10%;
+    padding: 4% 10%;
   }
   .hero-scroll{
     padding-top: -20%;
   }
   .hero-sous-titre{
-    font-size: 15px;
-    margin-bottom: -8%;
+    font-size: 16px;
+    margin-bottom: 10%;
   }
   .hero-titre {
-    font-size: clamp(2rem, 12vw, 4rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.8;
     display: flex;
     flex-direction: column;
@@ -1960,7 +1960,7 @@ iframe.goog-te-banner-frame { display: none !important; }
   }
   .hero-encadre-texte {
     display: block;
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-size: clamp(1.4rem, 15vw, 1.8rem);
     white-space: nowrap;
   }
   .coin { display: none; }
@@ -1968,11 +1968,13 @@ iframe.goog-te-banner-frame { display: none !important; }
   .hero-bg-overlay {
   background: rgba(255, 255, 255, 0.964);
   }
- .bouton-secondaire ,.bouton-principal{
-    margin-top: 20%;
+ .bouton-secondaire {
+    margin-top: 2%;
+
   }
   .bouton-principal{
-    margin-bottom: -17%;
+    margin-bottom: -1%;
+    margin-top: 8%;
   }
 
 }
