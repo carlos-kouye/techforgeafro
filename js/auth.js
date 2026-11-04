@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
             email:      emailVal,
             universite: univVal,
             niveau:     nivVal,
-            categorie:  catVal,
+            categorie:  libelleCategorie(catVal),
             date:       dateVal,
           }).then(function () {
             console.log("Notif admin envoyée");
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nom:           nomVal,
             email:         emailVal,
             universite:    univVal,
-            categorie:     catVal,
+            categorie:     libelleCategorie(catVal),
             lien_whatsapp: LIEN_WHATSAPP,
           }).then(function () {
             console.log("Bienvenue participant envoyé");

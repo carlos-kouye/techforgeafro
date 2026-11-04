@@ -113,12 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
           if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien GitHub obligatoire";
           if (hintLienSupp)      hintLienSupp.textContent      = "Site déployé (Vercel, Netlify...) — obligatoire";
           if (reqDevWeb)         reqDevWeb.style.display        = "inline-flex";
-        } else if (cat === "ui-ux") {
-          if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien Figma ou outil de maquette";
+        } else if (cat === "constructeur-plans") {
+          if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien vers tes plans (Drive, PDF, AutoCAD...)";
+          if (hintLienSupp)      hintLienSupp.textContent      = "Lien supplémentaire si besoin (optionnel)";
+          if (reqDevWeb)         reqDevWeb.style.display        = "none";
+        } else if (cat === "copywriter") {
+          if (hintLienPrincipal) hintLienPrincipal.textContent = "Lien vers tes textes (Google Docs, Notion, Drive...)";
           if (hintLienSupp)      hintLienSupp.textContent      = "Lien secondaire si besoin (optionnel)";
           if (reqDevWeb)         reqDevWeb.style.display        = "none";
         } else {
-          if (hintLienPrincipal) hintLienPrincipal.textContent = "Behance, Drive, Pinterest...";
+          if (hintLienPrincipal) hintLienPrincipal.textContent = "Behance, Figma, Drive, Pinterest...";
           if (hintLienSupp)      hintLienSupp.textContent      = "Lien supplémentaire (optionnel)";
           if (reqDevWeb)         reqDevWeb.style.display        = "none";
         }

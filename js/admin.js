@@ -14,14 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ── Dark mode ── */
   var htmlEl = document.documentElement;
   htmlEl.setAttribute("data-theme", localStorage.getItem("techforge-theme") || "light");
-  var btnTheme = document.getElementById("toggleTheme");
-  if (btnTheme) {
-    btnTheme.addEventListener("click", function () {
-      var t = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      htmlEl.setAttribute("data-theme", t);
-      localStorage.setItem("techforge-theme", t);
-    });
-  }
+  /* Le bouton thème (#toggleTheme) est géré par core.js.
+     Ne PAS le gérer ici aussi : deux gestionnaires = deux bascules = aucun changement. */
 
   /* ── Notification toast ── */
   function afficherNotif(message, type) {
@@ -237,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ================================================================ */
   var categories = [
     { key: "dev-web",            label: "Développement Web",    couleur: "#3B82F6" },
-    { key: "ui-ux",              label: "UI/UX Design",         couleur: "#8b5cf6" },
+    { key: "copywriter",         label: "Copywriter",           couleur: "#8b5cf6" },
     { key: "graphisme",          label: "Design Graphique",     couleur: "#ec4899" },
     { key: "ia-creativite",      label: "IA & Créativité",      couleur: "#f59e0b" },
     { key: "constructeur-plans", label: "Constructeur de plans",couleur: "#FF7A00" }

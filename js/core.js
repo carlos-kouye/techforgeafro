@@ -11,9 +11,23 @@ var SUPABASE_URL = "https://gqsbluqfjxfpmszreeqt.supabase.co";
 var SUPABASE_KEY = "sb_publishable_8C4isFsxWjKJ9dj7xBEpwA_zVwMCAcE";
 
 /* ── Configuration saison ── */
-var SOUMISSION_OUVERTE    = true;
-var CLASSEMENT_DISPONIBLE = true;
+var SOUMISSION_OUVERTE    = false; /* true = ouvert (provisoire : sera piloté depuis l'admin) */
+var CLASSEMENT_DISPONIBLE = false; /* true = visible (provisoire : sera piloté depuis l'admin) */
 var DATE_LIMITE           = new Date("2026-12-31T23:59:59");
+
+/* ── Catégories : UNE SEULE liste pour tout le site ──
+   Pour ajouter / renommer une catégorie : on ne change que ici
+   (+ les <option> des formulaires HTML). ── */
+var CATEGORIES = {
+  "dev-web"            : "Développement Web",
+  "copywriter"         : "Copywriter",
+  "graphisme"          : "Design Graphique",
+  "ia-creativite"      : "IA & Créativité",
+  "constructeur-plans" : "Constructeur de plans"
+};
+function libelleCategorie(code) {
+  return CATEGORIES[code] || code;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -208,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     soumission  : "Va dans <strong>Participer → Soumettre un projet</strong>. Tu as besoin d'un lien GitHub, Figma, Drive ou autre selon ta catégorie.",
     whatsapp    : "Le lien du groupe WhatsApp t'est envoyé <strong>après confirmation d'inscription</strong>.",
     classement  : "Les résultats sont publiés sur la page <strong>Classement</strong> après évaluation par les jurys.",
-    categorie   : "4 catégories : <strong>Dev Web</strong>, <strong>UI/UX Design</strong>, <strong>Design Graphique</strong> et <strong>IA & Créativité</strong>.",
+    categorie   : Object.keys(CATEGORIES).length + " catégories : " + Object.keys(CATEGORIES).map(function (k) { return "<strong>" + CATEGORIES[k] + "</strong>"; }).join(", ") + ".",
     default     : "Je peux t'aider sur : l'<strong>inscription</strong>, les <strong>prix</strong>, la <strong>durée</strong>, la <strong>soumission</strong>, le <strong>WhatsApp</strong> ou le <strong>classement</strong>."
   };
 

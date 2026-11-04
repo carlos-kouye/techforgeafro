@@ -86,14 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profilConnexion)   profilConnexion.style.display   = "none";
     profilContenu.style.display = "block";
 
-    var labelsCategorie = {
-      "dev-web"            : "Développement Web",
-      "ui-ux"              : "UI/UX Design",
-      "graphisme"          : "Design Graphique",
-      "ia-creativite"      : "IA & Créativité",
-      "constructeur-plans" : "Constructeur de plans"
-    };
-    var categorieLabel = labelsCategorie[data.categorie] || data.categorie;
+    var categorieLabel = libelleCategorie(data.categorie);
 
     function remplir(id, val) {
       var el = document.getElementById(id);
