@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var profilConnexion   = document.getElementById("profilConnexion");
 
   /* ── Vérifie session au chargement ── */
-  supabase.auth.getSession().then(function (res) {
+  chargerConfig().then(function () { return supabase.auth.getSession(); }).then(function (res) {
     var session = res.data.session;
     if (!session) {
       /* Pas connecté — affiche formulaire connexion */

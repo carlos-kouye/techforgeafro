@@ -220,7 +220,7 @@ body { top: 0 !important; }
 }
 
 .nav-outil-btn {
-  width: 39px;
+  width: 33px;
   height: 33px;
   border-radius: 50%;
   background: transparent;
@@ -572,7 +572,7 @@ body { top: 0 !important; }
 /* FILTRES */
 .classement-filtres {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.5rem;
   margin-bottom: 1.4rem;
   flex-wrap: wrap;
 }
@@ -607,6 +607,7 @@ body { top: 0 !important; }
   border: 1px solid #e2e8f0;
   border-radius: 18px;
   overflow: hidden;
+  margin-bottom: 5%;
 }
 [data-theme="dark"] .classement-tableau {
   background: #1e2433;
@@ -680,6 +681,7 @@ body { top: 0 !important; }
   border-radius: 8px;
   text-align: center;
   font-family: 'Space Grotesk', sans-serif;
+  margin-left: 5%;
 }
 
 .cl-lien {

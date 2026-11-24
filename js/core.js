@@ -11,8 +11,8 @@ var SUPABASE_URL = "https://gqsbluqfjxfpmszreeqt.supabase.co";
 var SUPABASE_KEY = "sb_publishable_8C4isFsxWjKJ9dj7xBEpwA_zVwMCAcE";
 
 /* ── Configuration saison ── */
-var SOUMISSION_OUVERTE    = false; /* true = ouvert (provisoire : sera piloté depuis l'admin) */
-var CLASSEMENT_DISPONIBLE = false; /* true = visible (provisoire : sera piloté depuis l'admin) */
+var SOUMISSION_OUVERTE    = false; /* valeur de secours : la vraie valeur vient de Supabase */
+var CLASSEMENT_DISPONIBLE = false; /* valeur de secours : la vraie valeur vient de Supabase */
 var DATE_LIMITE           = new Date("2026-12-31T23:59:59");
 
 /* ── Catégories : UNE SEULE liste pour tout le site ──
@@ -27,6 +27,35 @@ var CATEGORIES = {
 };
 function libelleCategorie(code) {
   return CATEGORIES[code] || code;
+}
+
+/* ── Configuration de la saison : lue dans Supabase (table "config") ──
+   Les valeurs ci-dessus ne sont que des valeurs de SECOURS (tout fermé).
+   Les pages qui en ont besoin appellent : chargerConfig().then(...) */
+var TF_CONFIG_ETAT = { ok: null, message: "" };   /* résultat de la lecture de la config */
+var _configPromesse = null;
+function chargerConfig() {
+  if (_configPromesse) return _configPromesse;
+  if (!window.supabase) { _configPromesse = Promise.resolve(); return _configPromesse; }
+  var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  _configPromesse = client.from("config").select("*").eq("id", 1).maybeSingle()
+    .then(function (res) {
+      if (res && res.error) {
+        TF_CONFIG_ETAT = { ok: false, message: res.error.message || "lecture refusée" };
+        console.warn("[Config] lecture impossible :", res.error.message || res.error);
+      } else if (res && res.data) {
+        SOUMISSION_OUVERTE    = !!res.data.soumission_ouverte;
+        CLASSEMENT_DISPONIBLE = !!res.data.classement_visible;
+        DATE_LIMITE           = new Date(res.data.date_limite);
+        TF_CONFIG_ETAT = { ok: true, message: "" };
+      } else {
+        TF_CONFIG_ETAT = { ok: false, message: "aucune ligne dans la table config" };
+        console.warn("[Config] aucune ligne dans la table config (id = 1).");
+      }
+    })
+    .catch(function (err) { TF_CONFIG_ETAT = { ok: false, message: "erreur réseau" };
+      console.warn("[Config] erreur réseau :", err); });
+  return _configPromesse;
 }
 
 document.addEventListener("DOMContentLoaded", function () {

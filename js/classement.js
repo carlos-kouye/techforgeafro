@@ -1,6 +1,7 @@
 /* ================================================================
-   TechForgeAfro  classement.js
-   Gère : affichage classement depuis Supabase, filtres
+   TechForgeAfro — classement.js
+   Affiche le classement lu dans Supabase (visible seulement si
+   l'admin l'a activé dans la table "config") + filtres.
    Chargé sur : classement.html uniquement
 ================================================================ */
 
@@ -10,71 +11,93 @@ document.addEventListener("DOMContentLoaded", function () {
   var classementContenu = document.getElementById("classementContenu");
   var classementAttente = document.getElementById("classementAttente");
 
-  /* ── Affichage selon état saison ── */
-  if (!CLASSEMENT_DISPONIBLE) {
+  var ICONES = {
+    "dev-web"            : "fa-laptop-code",
+    "copywriter"         : "fa-pencil",
+    "graphisme"          : "fa-palette",
+    "ia-creativite"      : "fa-robot",
+    "constructeur-plans" : "fa-compass-drafting"
+  };
+
+  /* Protège le texte avant de l'insérer dans la page */
+  function esc(t) {
+    return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function lienSur(url) { return /^https?:\/\//i.test(url || "") ? url : "#"; }
+
+  function montrerAttente() {
     if (classementContenu) classementContenu.style.display = "none";
     if (classementAttente) classementAttente.style.display = "block";
-    return;
+  }
+  function montrerContenu() {
+    if (classementAttente) classementAttente.style.display = "none";
+    if (classementContenu) classementContenu.style.display = "block";
   }
 
-  /* ── Charge le classement depuis Supabase ── */
-  if (classementContenu) {
-    classementContenu.style.display = "block";
-    if (classementAttente) classementAttente.style.display = "none";
+  /* Caché tant que la configuration n'est pas lue */
+  if (classementContenu) classementContenu.style.display = "none";
+
+  chargerConfig().then(function () {
+    if (!CLASSEMENT_DISPONIBLE) { montrerAttente(); return; }
     chargerClassement();
-  }
+  });
 
   function chargerClassement() {
     supabase.from("classement")
       .select("*")
       .order("rang", { ascending: true })
       .then(function (res) {
-        if (res.error || !res.data) {
-          console.error("Erreur classement:", res.error);
+        if (res.error || !res.data || res.data.length === 0) {
+          if (res.error) console.error("Erreur classement :", res.error.message);
+          montrerAttente();   /* rien à afficher : on garde le message d'attente */
           return;
         }
         afficherClassement(res.data);
+        montrerContenu();
       });
   }
 
   function afficherClassement(data) {
-    /* Podium top 3 */
-    var top3 = data.filter(function (r) { return r.rang <= 3; });
-    top3.forEach(function (item) {
-      var carte = document.querySelector(".podium-carte-" + item.rang);
-      if (!carte) return;
 
-      var nomEl = carte.querySelector(".podium-nom");
-      var catEl = carte.querySelector(".podium-categorie");
+    /* Podium : 3 premiers (une carte sans résultat est masquée) */
+    [1, 2, 3].forEach(function (rang) {
+      var carte = document.querySelector(".podium-carte-" + rang);
+      if (!carte) return;
+      var item = data.filter(function (r) { return r.rang === rang; })[0];
+      if (!item) { carte.style.display = "none"; return; }
+      carte.style.display = "";
+
+      var nomEl  = carte.querySelector(".podium-nom");
+      var catEl  = carte.querySelector(".podium-categorie");
       var scorEl = carte.querySelector(".score-valeur");
       var lienEl = carte.querySelector(".podium-lien");
 
       if (nomEl)  nomEl.textContent  = item.nom;
-      if (catEl)  catEl.textContent  = item.categorie;
-      if (scorEl) scorEl.textContent = item.score;
-      if (lienEl) lienEl.href        = item.lien_projet || "#";
+      if (catEl)  catEl.textContent  = libelleCategorie(item.categorie);
+      if (scorEl) scorEl.textContent = item.score != null ? item.score : "—";
+      if (lienEl) lienEl.href        = lienSur(item.lien_projet);
     });
 
-    /* Tableau — rang 4 et plus */
-    var tbody = document.getElementById("tbodyClassement");
-    if (!tbody) return;
+    /* Tableau : on retire les lignes d'exemple puis on ajoute les vraies (rang 4 et plus) */
+    var tableau = document.querySelector(".classement-tableau");
+    if (!tableau) return;
+    tableau.querySelectorAll(".classement-ligne").forEach(function (l) { l.remove(); });
 
-    tbody.innerHTML = "";
-    var reste = data.filter(function (r) { return r.rang > 3; });
-
-    reste.forEach(function (item) {
-      var tr = document.createElement("tr");
-      tr.setAttribute("data-categorie", item.categorie);
-      tr.className = "classement-ligne";
-      tr.innerHTML =
-        '<span class="cl-rang">' + item.rang + '</span>' +
-        '<span class="cl-nom">' + item.nom + '</span>' +
-        '<span class="cl-categorie">' + item.categorie + '</span>' +
-        '<span class="cl-score">' + (item.score || "—") + '</span>' +
-        '<a href="' + (item.lien_projet || "#") + '" target="_blank" class="cl-lien">' +
-          '<i class="fa-solid fa-arrow-up-right-from-square"></i> Voir' +
-        '</a>';
-      tbody.appendChild(tr);
+    data.filter(function (r) { return r.rang > 3; }).forEach(function (item) {
+      var ligne = document.createElement("div");
+      ligne.className = "classement-ligne";
+      ligne.setAttribute("data-categorie", item.categorie);
+      ligne.innerHTML =
+        '<span class="cl-rang">' + esc(item.rang) + '</span>' +
+        '<span class="cl-nom">' + esc(item.nom) + '</span>' +
+        '<span class="cl-categorie"><i class="fa-solid ' + (ICONES[item.categorie] || "fa-star") + '"></i> ' +
+          esc(libelleCategorie(item.categorie)) + '</span>' +
+        '<span class="cl-score">' + esc(item.score != null ? item.score : "—") + '</span>' +
+        '<a href="' + esc(lienSur(item.lien_projet)) + '" target="_blank" rel="noopener" class="cl-lien">' +
+          '<i class="fa-solid fa-arrow-up-right-from-square"></i> Voir</a>';
+      tableau.appendChild(ligne);
     });
   }
 

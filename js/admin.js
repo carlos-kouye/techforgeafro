@@ -148,21 +148,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var badge = document.getElementById("adminEmailBadge");
     if (badge) badge.textContent = email;
 
-    /* Lire les valeurs sauvegardées */
-    if (localStorage.getItem("tf-soumission-ouverte") !== null) {
-      SOUMISSION_OUVERTE = localStorage.getItem("tf-soumission-ouverte") === "1";
-    }
-    if (localStorage.getItem("tf-classement-disponible") !== null) {
-      CLASSEMENT_DISPONIBLE = localStorage.getItem("tf-classement-disponible") === "1";
-    }
-    if (localStorage.getItem("tf-date-limite")) {
-      DATE_LIMITE = new Date(localStorage.getItem("tf-date-limite"));
-    }
-
     chargerStats();
     chargerDerniersInscrits();
-    mettreAJourStatuts();
-    initialiserConfig();
+
+    /* La configuration (ouvert / fermé, date limite) vient de Supabase */
+    chargerConfig().then(function () {
+      mettreAJourStatuts();
+      initialiserConfig();
+    });
   }
 
   /* ================================================================
@@ -494,48 +487,94 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  /* Enregistre un réglage dans Supabase (table config). Seul l'admin en a le droit. */
+  function sauverConfig(champs, messageOk, annuler) {
+    supabase.from("config").update(champs).eq("id", 1).select()
+      .then(function (res) {
+        if (res.error || !res.data || res.data.length === 0) {
+          var detail = res.error ? res.error.message : "aucune ligne modifiée (ligne config absente ou droit refusé)";
+          console.error("[Config] enregistrement impossible :", detail);
+          if (annuler) annuler();
+          afficherNotif("Erreur : " + detail, "rouge");
+          return;
+        }
+        afficherNotif(messageOk, "vert");
+      })
+      .catch(function () {
+        if (annuler) annuler();
+        afficherNotif("Erreur de connexion.", "rouge");
+      });
+  }
+
+  /* Ligne de diagnostic : dit clairement si la lecture de la config Supabase marche */
+  function afficherDiagnosticConfig() {
+    var section = document.getElementById("sec-config");
+    if (!section) return;
+    var p = document.getElementById("diagConfig");
+    if (!p) {
+      p = document.createElement("p");
+      p.id = "diagConfig";
+      p.className = "ap-config-note";
+      section.appendChild(p);
+    }
+    var e = (typeof TF_CONFIG_ETAT !== "undefined") ? TF_CONFIG_ETAT : { ok: false, message: "core.js trop ancien" };
+    if (e.ok) {
+      p.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#10b981"></i><span>Lecture de la configuration Supabase : <strong>OK</strong>.</span>';
+    } else {
+      p.innerHTML = '<i class="fa-solid fa-circle-xmark" style="color:#ef4444"></i><span>Lecture de la configuration Supabase : <strong>ÉCHEC</strong> (' +
+                    (e.message || "raison inconnue") + '). Les réglages ne seront pas pris en compte.</span>';
+    }
+  }
+
   function initialiserConfig() {
+    afficherDiagnosticConfig();
     var tSou = document.getElementById("toggleSoumission");
     var tCla = document.getElementById("toggleClassement");
     var dLim = document.getElementById("dateLimite");
 
     if (tSou) {
       tSou.checked = SOUMISSION_OUVERTE;
-      tSou.addEventListener("change", function () {
-        SOUMISSION_OUVERTE = tSou.checked;
-        localStorage.setItem("tf-soumission-ouverte", SOUMISSION_OUVERTE ? "1" : "0");
+      tSou.onchange = function () {
+        var valeur = tSou.checked;
+        SOUMISSION_OUVERTE = valeur;
         mettreAJourStatuts();
-        var msg = SOUMISSION_OUVERTE ? "✅ Soumissions ouvertes !" : "🔒 Soumissions fermées.";
-        afficherNotif(msg, SOUMISSION_OUVERTE ? "vert" : "rouge");
-      });
+        sauverConfig({ soumission_ouverte: valeur },
+          valeur ? "✅ Soumissions ouvertes pour tout le monde" : "🔒 Soumissions fermées",
+          function () { tSou.checked = !valeur; SOUMISSION_OUVERTE = !valeur; mettreAJourStatuts(); });
+      };
     }
+
     if (tCla) {
       tCla.checked = CLASSEMENT_DISPONIBLE;
-      tCla.addEventListener("change", function () {
-        CLASSEMENT_DISPONIBLE = tCla.checked;
-        localStorage.setItem("tf-classement-disponible", CLASSEMENT_DISPONIBLE ? "1" : "0");
+      tCla.onchange = function () {
+        var valeur = tCla.checked;
+        CLASSEMENT_DISPONIBLE = valeur;
         mettreAJourStatuts();
-        var msg = CLASSEMENT_DISPONIBLE ? "✅ Classement visible !" : "🔒 Classement masqué.";
-        afficherNotif(msg, CLASSEMENT_DISPONIBLE ? "vert" : "rouge");
-      });
+        sauverConfig({ classement_visible: valeur },
+          valeur ? "✅ Classement visible pour tout le monde" : "🔒 Classement masqué",
+          function () { tCla.checked = !valeur; CLASSEMENT_DISPONIBLE = !valeur; mettreAJourStatuts(); });
+      };
     }
+
     if (dLim) {
       var d = DATE_LIMITE;
       var pad = function (n) { return String(n).padStart(2, "0"); };
-      dLim.value = d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) +
+      dLim.value = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
                    "T" + pad(d.getHours()) + ":" + pad(d.getMinutes());
     }
 
     var btnDate = document.getElementById("btnSauverDate");
     if (btnDate && dLim) {
-      btnDate.addEventListener("click", function () {
-        if (dLim.value) {
-          DATE_LIMITE = new Date(dLim.value);
-          localStorage.setItem("tf-date-limite", dLim.value);
-          mettreAJourStatuts();
-          afficherNotif("✅ Date limite sauvegardée !", "vert");
-        }
-      });
+      btnDate.onclick = function () {
+        if (!dLim.value) return;
+        var nouvelle = new Date(dLim.value);
+        var ancienne = DATE_LIMITE;
+        DATE_LIMITE = nouvelle;
+        mettreAJourStatuts();
+        sauverConfig({ date_limite: nouvelle.toISOString() },
+          "✅ Date limite enregistrée",
+          function () { DATE_LIMITE = ancienne; mettreAJourStatuts(); });
+      };
     }
   }
 
